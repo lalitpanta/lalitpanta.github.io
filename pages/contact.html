@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Lalit Pant - Backend & WordPress Developer</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    
+    <!-- Contact Page Specific CSS -->
+    <style>
+        /* Contact Page Variables */
+        :root {
+            --contact-primary: #2563eb;
+            --contact-secondary: #7c3aed;
+            --contact-success: #10b981;
+            --contact-error: #ef4444;
+            --contact-warning: #f59e0b;
+            --contact-light: #f8fafc;
+            --contact-dark: #1e293b;
+            --contact-gray: #64748b;
+            --contact-border: #e2e8f0;
+            --contact-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --contact-hover-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Contact Header */
+        .contact-header {
+            padding: 8rem 0 4rem;
+            background: linear-gradient(135deg, var(--contact-primary) 0%, var(--contact-secondary) 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            opacity: 0.1;
+        }
+
+        .contact-header .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .contact-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        .contact-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-stats .stat {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem 2rem;
+            border-radius: 1rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.1rem;
+            transition: transform 0.3s;
+        }
+
+        .contact-stats .stat:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-stats .stat i {
+            font-size: 1.8rem;
+            color: #60a5fa;
+        }
+
+        /* Contact Main Section */
+        .contact-main {
+            padding: 5rem 0;
+            background: var(--contact-light);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        @media (max-width: 992px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+
+        /* Contact Info Sidebar */
+        .contact-info {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            box-shadow: var(--contact-shadow);
+            border-top: 5px solid var(--contact-primary);
+        }
+
+        .contact-info h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--contact-dark);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-info h2 i {
+            color: var(--contact-primary);
+            background: rgba(37, 99, 235, 0.1);
+            padding: 0.8rem;
+            border-radius: 50%;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 1rem;
+            background: #f8fafc;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .contact-detail:hover {
+            background: white;
+            border-color: var(--contact-border);
+            transform: translateY(-3px);
+            box-shadow: var(--contact-shadow);
+        }
+
+        .contact-detail i {
+            color: var(--contact-primary);
+            font-size: 1.5rem;
+            min-width: 50px;
+            height: 50px;
+            background: rgba(37, 99, 235, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-detail-content h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--contact-dark);
+            font-weight: 600;
+        }
+
+        .contact-detail-content p {
+            color: var(--contact-gray);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .contact-detail-content a {
+            color: var(--contact-primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-detail-content a:hover {
+            color: var(--contact-secondary);
+            text-decoration: underline;
+        }
+
+        .social-profiles {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--contact-border);
+        }
+
+        .social-profiles h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--contact-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .social-profiles h3 i {
+            color: var(--contact-primary);
+        }
+
+        .social-links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+        }
+
+        .social-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.2rem 0.5rem;
+            background: #f8fafc;
+            border-radius: 1rem;
+            text-decoration: none;
+            color: var(--contact-dark);
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .social-link:hover {
+            background: white;
+            border-color: var(--contact-primary);
+            transform: translateY(-5px);
+            box-shadow: var(--contact-shadow);
+        }
+
+        .social-link i {
+            font-size: 1.8rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .social-link.github i { color: #333; }
+        .social-link.linkedin i { color: #0077b5; }
+        .social-link.twitter i { color: #1da1f2; }
+        .social-link.instagram i { color: #e4405f; }
+
+        .social-link span {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* Contact Form Section */
+        .contact-form-section {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            box-shadow: var(--contact-shadow);
+            border-top: 5px solid var(--contact-secondary);
+        }
+
+        .contact-form-section h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--contact-dark);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-form-section h2 i {
+            color: var(--contact-secondary);
+            background: rgba(124, 58, 237, 0.1);
+            padding: 0.8rem;
+            border-radius: 50%;
+        }
+
+        .contact-form-section > p {
+            color: var(--contact-gray);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        /* Form Styles */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--contact-dark);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-group label i {
+            color: var(--contact-primary);
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 0.9rem 1.2rem;
+            border: 2px solid var(--contact-border);
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: white;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--contact-primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .checkbox-group {
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-top: 0.25rem;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--contact-primary);
+        }
+
+        .checkbox-group label {
+            font-weight: normal;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .checkbox-group a {
+            color: var(--contact-primary);
+            text-decoration: none;
+        }
+
+        .checkbox-group a:hover {
+            text-decoration: underline;
+        }
+
+        .submit-btn {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--contact-primary), var(--contact-secondary));
+            color: white;
+            border: none;
+            border-radius: 0.75rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Form Status Messages */
+        .form-status {
+            padding: 1.5rem;
+            border-radius: 1rem;
+            margin-bottom: 1.5rem;
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-status.success {
+            background: #d1fae5;
+            border: 2px solid var(--contact-success);
+            color: #065f46;
+            display: block;
+        }
+
+        .form-status.error {
+            background: #fee2e2;
+            border: 2px solid var(--contact-error);
+            color: #991b1b;
+            display: block;
+        }
+
+        .form-status.warning {
+            background: #fef3c7;
+            border: 2px solid var(--contact-warning);
+            color: #92400e;
+            display: block;
+        }
+
+        .form-status i {
+            margin-right: 0.75rem;
+            font-size: 1.2rem;
+        }
+
+        /* Map Section */
+        .map-section {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .map-section h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: var(--contact-dark);
+        }
+
+        .map-container {
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: var(--contact-shadow);
+            height: 400px;
+            position: relative;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 4rem 0;
+            background: var(--contact-light);
+        }
+
+        .faq-section h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+            color: var(--contact-dark);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            box-shadow: var(--contact-shadow);
+            border: 1px solid var(--contact-border);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: #f8fafc;
+        }
+
+        .faq-question h3 {
+            font-size: 1.1rem;
+            color: var(--contact-dark);
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .faq-question i {
+            color: var(--contact-primary);
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 500px;
+        }
+
+        .faq-answer p {
+            color: var(--contact-gray);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .contact-header {
+                padding: 6rem 0 3rem;
+            }
+            
+            .contact-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .contact-stats {
+                gap: 1.5rem;
+            }
+            
+            .contact-stats .stat {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+            
+            .contact-info,
+            .contact-form-section {
+                padding: 2rem;
+            }
+            
+            .social-links-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-header h1 {
+                font-size: 2rem;
+            }
+            
+            .contact-stats {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .contact-stats .stat {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            
+            .social-links-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Required Field Indicator */
+        .required::after {
+            content: " *";
+            color: var(--contact-error);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Lalit Pant</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="gallery/index.html">Gallery</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Header -->
+    <section class="contact-header">
+        <div class="container">
+            <h1>Get In Touch</h1>
+            <p>Have a project in mind? Want to collaborate? Feel free to reach out. I'd love to hear from you!</p>
+            <div class="contact-stats">
+                <div class="stat">
+                    <i class="fas fa-clock"></i>
+                    <span>Response Time: 24-48 Hours</span>
+                </div>
+                <div class="stat">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Available for Freelance Work</span>
+                </div>
+                <div class="stat">
+                    <i class="fas fa-handshake"></i>
+                    <span>Open to Collaboration</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Main Section -->
+    <section class="contact-main">
+        <div class="container">
+            <div class="contact-container">
+                <!-- Contact Information -->
+                <div class="contact-info">
+                    <h2><i class="fas fa-info-circle"></i> Contact Information</h2>
+                    
+                    <div class="contact-details">
+                        <div class="contact-detail">
+                            <i class="fas fa-envelope"></i>
+                            <div class="contact-detail-content">
+                                <h3>Email Address</h3>
+                                <p>
+                                    <a href="mailto:pantlaalit@gmail.com">pantlaalit@gmail.com</a><br>
+                                    <small>Primary contact email</small>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contact-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div class="contact-detail-content">
+                                <h3>Location</h3>
+                                <p>
+                                    Pokhara University Area<br>
+                                    Nepal<br>
+                                    <small>Open to remote work worldwide</small>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contact-detail">
+                            <i class="fas fa-phone"></i>
+                            <div class="contact-detail-content">
+                                <h3>Phone</h3>
+                                <p>
+                                    Available upon request<br>
+                                    <small>Connect via email first</small>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contact-detail">
+                            <i class="fas fa-business-time"></i>
+                            <div class="contact-detail-content">
+                                <h3>Working Hours</h3>
+                                <p>
+                                    Monday - Friday: 9 AM - 6 PM<br>
+                                    Weekends: Available for urgent projects<br>
+                                    <small>Nepal Time (GMT+5:45)</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="social-profiles">
+                        <h3><i class="fas fa-share-alt"></i> Connect With Me</h3>
+                        <div class="social-links-grid">
+                            <a href="https://github.com/lalitpanta" target="_blank" class="social-link github">
+                                <i class="fab fa-github"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://linkedin.com/in/lalit-pant" target="_blank" class="social-link linkedin">
+                                <i class="fab fa-linkedin"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                            <a href="https://twitter.com/lalitpant" target="_blank" class="social-link twitter">
+                                <i class="fab fa-twitter"></i>
+                                <span>Twitter</span>
+                            </a>
+                            <a href="https://instagram.com/yourprofile" target="_blank" class="social-link instagram">
+                                <i class="fab fa-instagram"></i>
+                                <span>Instagram</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form-section">
+                    <h2><i class="fas fa-paper-plane"></i> Send Message</h2>
+                    <p>Fill out the form below and I'll get back to you as soon as possible.</p>
+                    
+                    <!-- Form Status Messages -->
+                    <div id="form-status" class="form-status"></div>
+                    
+                    <form id="contact-form" class="contact-form" action="https://formspree.io/f/mojjryar" method="POST">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name" class="required">
+                                    <i class="fas fa-user"></i> Full Name
+                                </label>
+                                <input type="text" id="name" name="name" required 
+                                       placeholder="Enter your full name"
+                                       minlength="2" maxlength="100">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email" class="required">
+                                    <i class="fas fa-envelope"></i> Email Address
+                                </label>
+                                <input type="email" id="email" name="email" required 
+                                       placeholder="Enter your email address"
+                                       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject" class="required">
+                                <i class="fas fa-tag"></i> Subject
+                            </label>
+                            <select id="subject" name="subject" required>
+                                <option value="" disabled selected>Select a subject</option>
+                                <option value="Project Inquiry">Project Inquiry</option>
+                                <option value="Collaboration">Collaboration Opportunity</option>
+                                <option value="WordPress Development">WordPress Development</option>
+                                <option value="Backend Development">Backend Development</option>
+                                <option value="Blockchain Project">Blockchain Project</option>
+                                <option value="Freelance Work">Freelance Work</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" class="required">
+                                <i class="fas fa-comment"></i> Message
+                            </label>
+                            <textarea id="message" name="message" required 
+                                      placeholder="Describe your project or inquiry in detail..."
+                                      minlength="10" maxlength="2000"></textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="budget">
+                                    <i class="fas fa-money-bill-wave"></i> Budget Range (Optional)
+                                </label>
+                                <select id="budget" name="budget">
+                                    <option value="" selected>Select budget range</option>
+                                    <option value="Less than $500">Less than $500</option>
+                                    <option value="$500 - $2000">$500 - $2,000</option>
+                                    <option value="$2000 - $5000">$2,000 - $5,000</option>
+                                    <option value="$5000 - $10000">$5,000 - $10,000</option>
+                                    <option value="More than $10000">More than $10,000</option>
+                                    <option value="To be discussed">To be discussed</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="timeline">
+                                    <i class="fas fa-calendar-alt"></i> Timeline (Optional)
+                                </label>
+                                <select id="timeline" name="timeline">
+                                    <option value="" selected>Select project timeline</option>
+                                    <option value="ASAP">ASAP</option>
+                                    <option value="1-2 weeks">1-2 weeks</option>
+                                    <option value="1 month">1 month</option>
+                                    <option value="1-3 months">1-3 months</option>
+                                    <option value="3+ months">3+ months</option>
+                                    <option value="Flexible">Flexible</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="newsletter" name="newsletter" checked>
+                            <label for="newsletter">
+                                Subscribe to my newsletter for updates on new projects, tutorials, and tech insights.
+                            </label>
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms" class="required">
+                                I agree to the <a href="#" onclick="showTerms()">Terms & Conditions</a> and understand that this form collects my personal information.
+                            </label>
+                        </div>
+
+                        <button type="submit" class="submit-btn" id="submit-btn">
+                            <span id="btn-text">Send Message</span>
+                            <div class="spinner" id="spinner" style="display: none;"></div>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <h2><i class="fas fa-map-marked-alt"></i> Location</h2>
+            <div class="map-container">
+                <div class="map-placeholder">
+                    <div>
+                        <i class="fas fa-map-marker-alt" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                        <h3>Pokhara University Area, Nepal</h3>
+                        <p>Available for remote work worldwide</p>
+                        <p style="font-size: 1rem; margin-top: 1rem; opacity: 0.8;">
+                            <i class="fas fa-clock"></i> Timezone: GMT+5:45
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
+            <div class="faq-container">
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What types of projects do you take on?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>I specialize in backend development, WordPress customization, blockchain applications, and full-stack web development. This includes RESTful APIs, database design, custom WordPress themes/plugins, smart contracts, and scalable web applications.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What's your typical response time?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>I aim to respond to all inquiries within 24-48 hours during weekdays. For urgent matters, please mention "URGENT" in your subject line and I'll prioritize your message.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do you offer freelance/contract work?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, I'm available for freelance and contract work. I can work on both short-term projects and long-term collaborations. Feel free to reach out with your project requirements.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What's your development process?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>My process typically includes: 1) Requirements gathering, 2) Planning & proposal, 3) Development & testing, 4) Deployment, and 5) Maintenance & support. I maintain clear communication throughout the project.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do you work with international clients?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! I work with clients from all around the world. My remote work setup allows me to collaborate effectively across different time zones using tools like Slack, Zoom, and project management platforms.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Lalit Pant. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://github.com/lalitpanta" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="mailto:pantlaalit@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://linkedin.com/in/lalit-pant" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://twitter.com/lalitpant" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Formspree Integration
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get form elements
+            const contactForm = document.getElementById('contact-form');
+            const formStatus = document.getElementById('form-status');
+            const submitBtn = document.getElementById('submit-btn');
+            const btnText = document.getElementById('btn-text');
+            const spinner = document.getElementById('spinner');
+            
+            // FAQ Accordion
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            // Initialize FAQ
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    // Close all other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+            
+            // Form validation
+            contactForm.addEventListener('submit', async function(event) {
+                event.preventDefault();
+                
+                // Validate form
+                if (!validateForm()) {
+                    return;
+                }
+                
+                // Show loading state
+                submitBtn.disabled = true;
+                btnText.textContent = 'Sending...';
+                spinner.style.display = 'inline-block';
+                
+                try {
+                    // Get form data
+                    const formData = new FormData(contactForm);
+                    
+                    // Send to Formspree
+                    const response = await fetch(contactForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+                    
+                    // Handle response
+                    if (response.ok) {
+                        showSuccessMessage();
+                        contactForm.reset();
+                    } else {
+                        const data = await response.json();
+                        if (data.errors) {
+                            throw new Error(data.errors.map(error => error.message).join(', '));
+                        } else {
+                            throw new Error('Something went wrong. Please try again.');
+                        }
+                    }
+                } catch (error) {
+                    showErrorMessage(error.message);
+                } finally {
+                    // Reset button state
+                    submitBtn.disabled = false;
+                    btnText.textContent = 'Send Message';
+                    spinner.style.display = 'none';
+                }
+            });
+            
+            // Form validation function
+            function validateForm() {
+                const name = document.getElementById('name');
+                const email = document.getElementById('email');
+                const subject = document.getElementById('subject');
+                const message = document.getElementById('message');
+                const terms = document.getElementById('terms');
+                
+                // Reset previous errors
+                clearErrors();
+                
+                let isValid = true;
+                
+                // Validate name
+                if (!name.value.trim()) {
+                    showError(name, 'Please enter your name');
+                    isValid = false;
+                } else if (name.value.trim().length < 2) {
+                    showError(name, 'Name must be at least 2 characters');
+                    isValid = false;
+                }
+                
+                // Validate email
+                const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                if (!email.value.trim()) {
+                    showError(email, 'Please enter your email');
+                    isValid = false;
+                } else if (!emailRegex.test(email.value)) {
+                    showError(email, 'Please enter a valid email address');
+                    isValid = false;
+                }
+                
+                // Validate subject
+                if (!subject.value) {
+                    showError(subject, 'Please select a subject');
+                    isValid = false;
+                }
+                
+                // Validate message
+                if (!message.value.trim()) {
+                    showError(message, 'Please enter your message');
+                    isValid = false;
+                } else if (message.value.trim().length < 10) {
+                    showError(message, 'Message must be at least 10 characters');
+                    isValid = false;
+                }
+                
+                // Validate terms
+                if (!terms.checked) {
+                    showError(terms, 'You must agree to the terms and conditions');
+                    isValid = false;
+                }
+                
+                return isValid;
+            }
+            
+            // Show error on specific field
+            function showError(element, message) {
+                // Add error class to input
+                element.classList.add('error');
+                
+                // Create error message element
+                const errorElement = document.createElement('div');
+                errorElement.className = 'error-message';
+                errorElement.style.color = 'var(--contact-error)';
+                errorElement.style.fontSize = '0.85rem';
+                errorElement.style.marginTop = '0.25rem';
+                errorElement.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
+                
+                // Insert after input
+                element.parentNode.appendChild(errorElement);
+            }
+            
+            // Clear all errors
+            function clearErrors() {
+                // Remove error classes
+                document.querySelectorAll('.error').forEach(el => {
+                    el.classList.remove('error');
+                });
+                
+                // Remove error messages
+                document.querySelectorAll('.error-message').forEach(el => {
+                    el.remove();
+                });
+            }
+            
+            // Show success message
+            function showSuccessMessage() {
+                formStatus.className = 'form-status success';
+                formStatus.innerHTML = `
+                    <i class="fas fa-check-circle"></i>
+                    <strong>Message sent successfully!</strong>
+                    <p>Thank you for reaching out. I'll get back to you within 24-48 hours.</p>
+                `;
+                formStatus.style.display = 'block';
+                
+                // Scroll to form status
+                formStatus.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Auto-hide after 10 seconds
+                setTimeout(() => {
+                    formStatus.style.display = 'none';
+                }, 10000);
+            }
+            
+            // Show error message
+            function showErrorMessage(message) {
+                formStatus.className = 'form-status error';
+                formStatus.innerHTML = `
+                    <i class="fas fa-exclamation-circle"></i>
+                    <strong>Error sending message</strong>
+                    <p>${message}</p>
+                `;
+                formStatus.style.display = 'block';
+                
+                // Scroll to form status
+                formStatus.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            
+            // Show terms modal (placeholder)
+            function showTerms() {
+                const termsContent = `
+                    <h3>Terms & Conditions</h3>
+                    <p><strong>1. Information Collection</strong><br>
+                    The information you provide in this contact form will be used solely for communication purposes related to your inquiry.</p>
+                    
+                    <p><strong>2. Data Protection</strong><br>
+                    Your personal information will not be shared with third parties without your consent, except as required by law.</p>
+                    
+                    <p><strong>3. Communication</strong><br>
+                    By submitting this form, you agree to receive communication related to your inquiry via email.</p>
+                    
+                    <p><strong>4. Newsletter Subscription</strong><br>
+                    Newsletter subscription is optional and can be unsubscribed from at any time.</p>
+                    
+                    <p><strong>5. Project Inquiries</strong><br>
+                    Submission of project inquiries does not guarantee acceptance of the project. All projects are subject to availability and mutual agreement.</p>
+                `;
+                
+                // Create modal
+                const modal = document.createElement('div');
+                modal.style.position = 'fixed';
+                modal.style.top = '0';
+                modal.style.left = '0';
+                modal.style.width = '100%';
+                modal.style.height = '100%';
+                modal.style.backgroundColor = 'rgba(0,0,0,0.8)';
+                modal.style.display = 'flex';
+                modal.style.alignItems = 'center';
+                modal.style.justifyContent = 'center';
+                modal.style.zIndex = '3000';
+                modal.style.padding = '1rem';
+                
+                modal.innerHTML = `
+                    <div style="background: white; padding: 2rem; border-radius: 1rem; max-width: 600px; max-height: 80vh; overflow-y: auto;">
+                        ${termsContent}
+                        <div style="text-align: center; margin-top: 2rem;">
+                            <button onclick="this.parentElement.parentElement.remove()" 
+                                    style="padding: 0.75rem 2rem; background: var(--contact-primary); color: white; border: none; border-radius: 0.5rem; cursor: pointer; font-weight: bold;">
+                                I Understand
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(modal);
+                
+                // Close modal on click outside
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        modal.remove();
+                    }
+                });
+            }
+            
+            // Add global function for terms modal
+            window.showTerms = showTerms;
+            
+            // Real-time validation
+            const formInputs = contactForm.querySelectorAll('input, textarea, select');
+            formInputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    // Clear any existing error for this field
+                    this.classList.remove('error');
+                    const errorMsg = this.parentNode.querySelector('.error-message');
+                    if (errorMsg) {
+                        errorMsg.remove();
+                    }
+                    
+                    // Validate this specific field
+                    validateField(this);
+                });
+                
+                // Add input event for character counters
+                if (input.id === 'message') {
+                    const counter = document.createElement('div');
+                    counter.style.fontSize = '0.85rem';
+                    counter.style.color = 'var(--contact-gray)';
+                    counter.style.textAlign = 'right';
+                    counter.style.marginTop = '0.25rem';
+                    counter.id = 'message-counter';
+                    updateCounter(input, counter);
+                    
+                    input.parentNode.appendChild(counter);
+                    
+                    input.addEventListener('input', function() {
+                        updateCounter(this, counter);
+                    });
+                }
+            });
+            
+            // Validate individual field
+            function validateField(field) {
+                const value = field.value.trim();
+                
+                switch (field.id) {
+                    case 'name':
+                        if (value && value.length < 2) {
+                            showError(field, 'Name must be at least 2 characters');
+                        }
+                        break;
+                        
+                    case 'email':
+                        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                        if (value && !emailRegex.test(value)) {
+                            showError(field, 'Please enter a valid email address');
+                        }
+                        break;
+                        
+                    case 'message':
+                        if (value && value.length < 10) {
+                            showError(field, 'Message must be at least 10 characters');
+                        }
+                        break;
+                }
+            }
+            
+            // Update character counter
+            function updateCounter(textarea, counter) {
+                const length = textarea.value.length;
+                const maxLength = textarea.maxLength || 2000;
+                counter.textContent = `${length}/${maxLength} characters`;
+                
+                if (length > maxLength * 0.9) {
+                    counter.style.color = 'var(--contact-warning)';
+                } else if (length > maxLength * 0.8) {
+                    counter.style.color = 'var(--contact-gray)';
+                } else {
+                    counter.style.color = 'var(--contact-gray)';
+                }
+            }
+            
+            // Auto-resize textarea
+            const messageTextarea = document.getElementById('message');
+            messageTextarea.addEventListener('input', function() {
+                this.style.height = 'auto';
+                this.style.height = (this.scrollHeight) + 'px';
+            });
+            
+            // Initialize textarea height
+            messageTextarea.style.height = 'auto';
+            messageTextarea.style.height = (messageTextarea.scrollHeight) + 'px';
+        });
+    </script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
