@@ -3,474 +3,815 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery | Lalit Pant</title>
+    <title>Gallery | Lalit Pant - Portfolio</title>
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon">
-
+    
+    <!-- Gallery Specific CSS -->
     <style>
-        /* Gallery Specific Styles */
-:root {
-    --gallery-bg: #f8fafc;
-    --gallery-card-bg: #ffffff;
-    --gallery-border: #e2e8f0;
-    --gallery-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    --gallery-hover-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-}
+        /* Gallery Variables */
+        :root {
+            --gallery-primary: #2563eb;
+            --gallery-secondary: #7c3aed;
+            --gallery-light: #f8fafc;
+            --gallery-dark: #1e293b;
+            --gallery-gray: #64748b;
+            --gallery-card-bg: #ffffff;
+            --gallery-border: #e2e8f0;
+            --gallery-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --gallery-hover-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
 
-/* Gallery Header */
-.gallery-header {
-    padding: 6rem 0 3rem;
-    background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
-    color: white;
-    text-align: center;
-}
+        /* Gallery Header */
+        .gallery-header {
+            padding: 8rem 0 4rem;
+            background: linear-gradient(135deg, var(--gallery-primary) 0%, var(--gallery-secondary) 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
 
-.gallery-header h1 {
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
-}
+        .gallery-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            opacity: 0.1;
+        }
 
-.gallery-header p {
-    font-size: 1.2rem;
-    opacity: 0.9;
-    max-width: 600px;
-    margin: 0 auto 2rem;
-}
+        .gallery-header .container {
+            position: relative;
+            z-index: 1;
+        }
 
-.gallery-stats {
-    display: flex;
-    justify-content: center;
-    gap: 3rem;
-    margin-top: 2rem;
-    flex-wrap: wrap;
-}
+        .gallery-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
 
-.gallery-stats .stat {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1.1rem;
-}
+        .gallery-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
 
-.gallery-stats .stat i {
-    font-size: 1.5rem;
-}
+        .gallery-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
 
-/* Gallery Filter */
-.gallery-filter {
-    padding: 2rem 0;
-    background: white;
-    border-bottom: 1px solid var(--gallery-border);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
+        .gallery-stats .stat {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem 2rem;
+            border-radius: 1rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.1rem;
+            transition: transform 0.3s;
+        }
 
-.gallery-filter .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
+        .gallery-stats .stat:hover {
+            transform: translateY(-5px);
+        }
 
-.filter-options {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-}
+        .gallery-stats .stat i {
+            font-size: 1.8rem;
+            color: #60a5fa;
+        }
 
-.filter-btn {
-    padding: 0.5rem 1.25rem;
-    border: 2px solid var(--primary);
-    background: white;
-    color: var(--primary);
-    border-radius: 2rem;
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.3s;
-    font-size: 0.9rem;
-}
+        /* Gallery Filter */
+        .gallery-filter {
+            padding: 2rem 0;
+            background: var(--gallery-card-bg);
+            border-bottom: 1px solid var(--gallery-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
 
-.filter-btn.active,
-.filter-btn:hover {
-    background: var(--primary);
-    color: white;
-    transform: translateY(-2px);
-}
+        .gallery-filter .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
 
-.search-box {
-    display: flex;
-    align-items: center;
-    background: white;
-    border: 2px solid var(--gallery-border);
-    border-radius: 2rem;
-    padding: 0.5rem 1rem;
-    min-width: 250px;
-}
+        .filter-options {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
 
-.search-box input {
-    border: none;
-    outline: none;
-    flex: 1;
-    padding: 0.25rem;
-    font-size: 0.9rem;
-}
+        .filter-btn {
+            padding: 0.6rem 1.5rem;
+            border: 2px solid var(--gallery-primary);
+            background: white;
+            color: var(--gallery-primary);
+            border-radius: 2rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
-.search-box button {
-    background: none;
-    border: none;
-    color: var(--gray);
-    cursor: pointer;
-    padding: 0.25rem;
-}
+        .filter-btn i {
+            font-size: 0.9rem;
+        }
 
-/* Main Gallery */
-.main-gallery {
-    padding: 3rem 0;
-    background: var(--gallery-bg);
-    min-height: 70vh;
-}
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--gallery-primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+        }
 
-.gallery-section {
-    margin-bottom: 4rem;
-}
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: white;
+            border: 2px solid var(--gallery-border);
+            border-radius: 2rem;
+            padding: 0.6rem 1.2rem;
+            min-width: 280px;
+            transition: all 0.3s;
+        }
 
-.gallery-section .section-title {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    color: var(--dark);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
+        .search-box:focus-within {
+            border-color: var(--gallery-primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
 
-.gallery-section .section-title i {
-    color: var(--primary);
-}
+        .search-box input {
+            border: none;
+            outline: none;
+            flex: 1;
+            padding: 0.25rem;
+            font-size: 0.95rem;
+            background: transparent;
+        }
 
-/* Gallery Grid */
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-bottom: 3rem;
-}
+        .search-box button {
+            background: none;
+            border: none;
+            color: var(--gallery-gray);
+            cursor: pointer;
+            padding: 0.25rem;
+            transition: color 0.3s;
+        }
 
-.gallery-item {
-    background: var(--gallery-card-bg);
-    border-radius: 1rem;
-    overflow: hidden;
-    box-shadow: var(--gallery-shadow);
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
+        .search-box button:hover {
+            color: var(--gallery-primary);
+        }
 
-.gallery-item:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--gallery-hover-shadow);
-}
+        /* Main Gallery */
+        .main-gallery {
+            padding: 4rem 0;
+            background: var(--gallery-light);
+            min-height: 70vh;
+        }
 
-.gallery-item.solo {
-    grid-column: span 1;
-}
+        .gallery-section {
+            margin-bottom: 5rem;
+        }
 
-.image-container {
-    position: relative;
-    height: 200px;
-    overflow: hidden;
-}
+        .gallery-section:last-child {
+            margin-bottom: 0;
+        }
 
-.image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s;
-}
+        .gallery-section .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 2.5rem;
+            color: var(--gallery-dark);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--gallery-primary);
+        }
 
-.gallery-item:hover .image-container img {
-    transform: scale(1.1);
-}
+        .gallery-section .section-title i {
+            color: var(--gallery-primary);
+            background: rgba(37, 99, 235, 0.1);
+            padding: 0.8rem;
+            border-radius: 50%;
+        }
 
-.image-count {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: rgba(0,0,0,0.7);
-    color: white;
-    padding: 0.25rem 0.75rem;
-    border-radius: 1rem;
-    font-size: 0.8rem;
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-}
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
 
-.gallery-info {
-    padding: 1.5rem;
-}
+        /* Default Gallery Item */
+        .gallery-item {
+            background: var(--gallery-card-bg);
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: var(--gallery-shadow);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-.gallery-info h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
-    color: var(--dark);
-}
+        /* Special Blockchain Item - Hidden by default */
+        .gallery-item.blockchain-hidden {
+            opacity: 0.3;
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            border: 2px dashed #94a3b8;
+            position: relative;
+            overflow: hidden;
+        }
 
-.gallery-info p {
-    color: var(--gray);
-    margin-bottom: 1rem;
-    font-size: 0.95rem;
-    line-height: 1.4;
-}
+        .gallery-item.blockchain-hidden::before {
+            content: 'Click to reveal blockchain images';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(37, 99, 235, 0.9);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            z-index: 2;
+            text-align: center;
+            width: 80%;
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
 
-.tags {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-}
+        .gallery-item.blockchain-hidden::after {
+            content: '🔒';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
 
-.tag {
-    background: #e0f2fe;
-    color: #0369a1;
-    padding: 0.25rem 0.75rem;
-    border-radius: 1rem;
-    font-size: 0.8rem;
-    font-weight: 500;
-}
+        .gallery-item.blockchain-hidden .image-container img {
+            filter: blur(10px) grayscale(80%);
+            transform: scale(1.1);
+        }
 
-.tag:nth-child(2) {
-    background: #f0f9ff;
-    color: #0c4a6e;
-}
+        .gallery-item.blockchain-hidden .image-count {
+            display: none;
+        }
 
-.tag:nth-child(3) {
-    background: #fef3c7;
-    color: #92400e;
-}
+        .gallery-item.blockchain-hidden:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(37, 99, 235, 0.2);
+            border-color: var(--gallery-primary);
+        }
 
-/* Single Images Grid */
-.single-images-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1.5rem;
-}
+        .gallery-item.blockchain-hidden:hover::before {
+            background: rgba(37, 99, 235, 1);
+            transform: translate(-50%, -50%) scale(1.05);
+        }
 
-.single-image {
-    position: relative;
-    height: 200px;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    cursor: pointer;
-}
+        /* Revealed Blockchain Item */
+        .gallery-item.blockchain-revealed {
+            opacity: 1;
+            background: var(--gallery-card-bg);
+            border: 2px solid var(--gallery-primary);
+            animation: revealItem 0.5s ease forwards;
+        }
 
-.single-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s;
-}
+        @keyframes revealItem {
+            0% {
+                opacity: 0.3;
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
 
-.single-image:hover img {
-    transform: scale(1.05);
-}
+        .gallery-item:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--gallery-hover-shadow);
+        }
 
-.single-image .image-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(transparent, rgba(0,0,0,0.8));
-    color: white;
-    padding: 1rem;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--gallery-primary), var(--gallery-secondary));
+            z-index: 2;
+        }
 
-.single-image:hover .image-overlay {
-    opacity: 1;
-}
+        .image-container {
+            position: relative;
+            height: 240px;
+            overflow: hidden;
+        }
 
-/* Lightbox Modal */
-.lightbox-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.95);
-    z-index: 2000;
-    padding: 2rem;
-}
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s, filter 0.6s;
+        }
 
-.lightbox-content {
-    max-width: 1000px;
-    margin: 2rem auto;
-    background: white;
-    border-radius: 1rem;
-    overflow: hidden;
-    position: relative;
-}
+        .gallery-item:hover .image-container img {
+            transform: scale(1.1);
+        }
 
-.close-btn {
-    position: absolute;
-    top: 1rem;
-    right: 1.5rem;
-    color: white;
-    font-size: 2.5rem;
-    cursor: pointer;
-    z-index: 2001;
-    background: rgba(0,0,0,0.5);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+        .image-count {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(0, 0, 0, 0.75);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
-.lightbox-main {
-    position: relative;
-    height: 500px;
-    background: #000;
-}
+        .gallery-info {
+            padding: 1.75rem;
+        }
 
-#lightbox-image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
+        .gallery-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+            color: var(--gallery-dark);
+            font-weight: 700;
+        }
 
-.lightbox-nav {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    transform: translateY(-50%);
-    display: flex;
-    justify-content: space-between;
-    padding: 0 1rem;
-}
+        .gallery-info p {
+            color: var(--gallery-gray);
+            margin-bottom: 1.25rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            min-height: 4rem;
+        }
 
-.lightbox-nav button {
-    background: rgba(0,0,0,0.7);
-    color: white;
-    border: none;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.3s;
-}
+        .tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
 
-.lightbox-nav button:hover {
-    background: rgba(0,0,0,0.9);
-}
+        .tag {
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 0.35rem 0.9rem;
+            border-radius: 2rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
 
-.lightbox-info {
-    padding: 2rem;
-}
+        .tag.blockchain-tag {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            animation: pulse 2s infinite;
+        }
 
-.lightbox-info h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: var(--dark);
-}
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+        }
 
-.lightbox-info p {
-    color: var(--gray);
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
-}
+        .tag:hover {
+            transform: translateY(-2px);
+        }
 
-.lightbox-tags {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-    flex-wrap: wrap;
-}
+        /* Single Images Grid */
+        .single-images-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
 
-.lightbox-counter {
-    text-align: center;
-    color: var(--gray);
-    font-size: 1.1rem;
-    font-weight: 600;
-}
+        .single-image {
+            position: relative;
+            height: 240px;
+            border-radius: 1rem;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: var(--gallery-shadow);
+            transition: all 0.3s;
+        }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .gallery-header h1 {
-        font-size: 2.5rem;
-    }
-    
-    .gallery-stats {
-        gap: 2rem;
-    }
-    
-    .gallery-filter .container {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    
-    .filter-options {
-        justify-content: center;
-    }
-    
-    .search-box {
-        width: 100%;
-        min-width: auto;
-    }
-    
-    .gallery-grid {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 1.5rem;
-    }
-    
-    .lightbox-content {
-        margin: 1rem;
-        height: calc(100vh - 2rem);
-        display: flex;
-        flex-direction: column;
-    }
-    
-    .lightbox-main {
-        height: 60%;
-        flex: 1;
-    }
-    
-    .lightbox-info {
-        max-height: 40%;
-        overflow-y: auto;
-    }
-}
+        .single-image:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--gallery-hover-shadow);
+        }
 
-@media (max-width: 480px) {
-    .gallery-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .single-images-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .gallery-stats {
-        flex-direction: column;
-        gap: 1rem;
-    }
-    
-    .filter-options {
-        overflow-x: auto;
-        padding-bottom: 0.5rem;
-        justify-content: flex-start;
-    }
-}
+        .single-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .single-image:hover img {
+            transform: scale(1.1);
+        }
+
+        .single-image .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+            color: white;
+            padding: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+            transform: translateY(100%);
+        }
+
+        .single-image:hover .image-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .image-overlay h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .image-overlay p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        /* Lightbox Modal */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            padding: 1rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .lightbox-content {
+            max-width: 1200px;
+            height: 90vh;
+            margin: 2rem auto;
+            background: #111;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            color: white;
+            font-size: 2.8rem;
+            cursor: pointer;
+            z-index: 2001;
+            background: rgba(0, 0, 0, 0.6);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(90deg);
+        }
+
+        .lightbox-main {
+            position: relative;
+            flex: 1;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #lightbox-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            animation: zoomIn 0.5s ease;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 2rem;
+            pointer-events: none;
+        }
+
+        .lightbox-nav button {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            pointer-events: all;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .lightbox-nav button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .lightbox-info {
+            padding: 2rem;
+            background: #1a1a1a;
+            color: white;
+        }
+
+        .lightbox-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: white;
+            font-weight: 700;
+        }
+
+        .lightbox-info p {
+            color: #b0b0b0;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .lightbox-tags {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .lightbox-counter {
+            text-align: center;
+            color: #888;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding-top: 1rem;
+            border-top: 1px solid #333;
+        }
+
+        /* Revealed Images Container */
+        .revealed-images-container {
+            display: none;
+            margin-top: 2rem;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .revealed-images-container.active {
+            display: block;
+        }
+
+        .revealed-images-title {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--gallery-dark);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .revealed-images-title i {
+            color: var(--gallery-primary);
+            background: rgba(37, 99, 235, 0.1);
+            padding: 0.8rem;
+            border-radius: 50%;
+        }
+
+        .revealed-images-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .gallery-header {
+                padding: 6rem 0 3rem;
+            }
+            
+            .gallery-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .gallery-stats {
+                gap: 1.5rem;
+            }
+            
+            .gallery-stats .stat {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+            
+            .gallery-filter .container {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 1.5rem;
+            }
+            
+            .filter-options {
+                justify-content: center;
+            }
+            
+            .search-box {
+                width: 100%;
+                min-width: auto;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .single-images-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .lightbox-content {
+                margin: 1rem;
+                height: calc(100vh - 2rem);
+            }
+            
+            .lightbox-info {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-header h1 {
+                font-size: 2rem;
+            }
+            
+            .gallery-stats {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .gallery-stats .stat {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .single-images-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-options {
+                overflow-x: auto;
+                padding-bottom: 0.5rem;
+                justify-content: flex-start;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .gallery-section .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .gallery-item.blockchain-hidden::before {
+                font-size: 1rem;
+                padding: 0.8rem 1.5rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: var(--gallery-gray);
+        }
+
+        .loading i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--gallery-primary);
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Image Fallback */
+        .image-fallback {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 1rem;
+        }
     </style>
 </head>
 <body>
@@ -495,20 +836,20 @@
     <!-- Gallery Header -->
     <section class="gallery-header">
         <div class="container">
-            <h1>My Gallery</h1>
-            <p>A visual journey through my projects and travel adventures</p>
+            <h1>Visual Gallery</h1>
+            <p>Explore my technical projects, creative work, and travel adventures through photos</p>
             <div class="gallery-stats">
                 <div class="stat">
                     <i class="fas fa-code"></i>
-                    <span>12+ Project Screenshots</span>
+                    <span>15+ Projects</span>
                 </div>
                 <div class="stat">
-                    <i class="fas fa-plane"></i>
-                    <span>8+ Travel Destinations</span>
+                    <i class="fas fa-globe-asia"></i>
+                    <span>10+ Locations</span>
                 </div>
                 <div class="stat">
                     <i class="fas fa-images"></i>
-                    <span>50+ Photos</span>
+                    <span>60+ Photos</span>
                 </div>
             </div>
         </div>
@@ -518,18 +859,28 @@
     <section class="gallery-filter">
         <div class="container">
             <div class="filter-options">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="projects">Projects</button>
-                <button class="filter-btn" data-filter="travel">Travel</button>
-                <button class="filter-btn" data-filter="blockchain">Blockchain</button>
-                <button class="filter-btn" data-filter="wordpress">WordPress</button>
-                <button class="filter-btn" data-filter="opencv">OpenCV</button>
-                <button class="filter-btn" data-filter="nepal">Nepal</button>
-                <button class="filter-btn" data-filter="nature">Nature</button>
+                <button class="filter-btn active" data-filter="all">
+                    <i class="fas fa-layer-group"></i> All
+                </button>
+                <button class="filter-btn" data-filter="projects">
+                    <i class="fas fa-code"></i> Projects
+                </button>
+                <button class="filter-btn" data-filter="travel">
+                    <i class="fas fa-plane"></i> Travel
+                </button>
+                <button class="filter-btn" data-filter="nature">
+                    <i class="fas fa-mountain"></i> Nature
+                </button>
+                <button class="filter-btn" data-filter="tech">
+                    <i class="fas fa-laptop-code"></i> Tech
+                </button>
+                <button class="filter-btn" data-filter="nepal">
+                    <i class="fas fa-landmark"></i> Nepal
+                </button>
             </div>
             
             <div class="search-box">
-                <input type="text" id="search-input" placeholder="Search images...">
+                <input type="text" id="search-input" placeholder="Search photos by keyword...">
                 <button id="search-btn"><i class="fas fa-search"></i></button>
             </div>
         </div>
@@ -538,83 +889,75 @@
     <!-- Main Gallery -->
     <section class="main-gallery">
         <div class="container">
-            <!-- Projects Section -->
+            <!-- Tech Projects Section -->
             <div class="gallery-section">
-                <h2 class="section-title"><i class="fas fa-code"></i> Project Screenshots</h2>
+                <h2 class="section-title"><i class="fas fa-laptop-code"></i> Technical Projects</h2>
                 <div class="gallery-grid">
                     
-                    <!-- Blockchain Voting Project -->
-                    <div class="gallery-item" data-category="projects blockchain" data-group="blockchain-voting">
+                    <!-- Blockchain Voting (Hidden by default) -->
+                    <div class="gallery-item blockchain-hidden" data-category="projects tech blockchain" data-group="blockchain">
                         <div class="image-container">
-                            <img src="images/projects/blockchain-voting/1.jpg" alt="Blockchain Voting System">
+                            <img src="https://images.unsplash.com/photo-1518546305927-5a555bb7020d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Blockchain Technology" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="image-fallback" style="display: none;">
+                                Blockchain Technology Preview
+                            </div>
                             <div class="image-count">
-                                <i class="fas fa-layer-group"></i> 3 images
+                                <i class="fas fa-layer-group"></i> 4 images
                             </div>
                         </div>
                         <div class="gallery-info">
                             <h3>Blockchain Voting System</h3>
-                            <p>Ethereum-based secure voting platform</p>
+                            <p>Click to reveal secure Ethereum-based electronic voting platform with smart contracts and Web3.js integration</p>
                             <div class="tags">
+                                <span class="tag blockchain-tag">🔒 Click to Reveal</span>
                                 <span class="tag">Blockchain</span>
-                                <span class="tag">Ethereum</span>
-                                <span class="tag">Web3.js</span>
+                                <span class="tag">Security</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Smart Attendance System -->
-                    <div class="gallery-item" data-category="projects opencv" data-group="smart-attendance">
+                    <!-- WordPress Development (Visible) -->
+                    <div class="gallery-item" data-category="projects tech" data-group="wordpress">
                         <div class="image-container">
-                            <img src="images/projects/smart-attendance/1.jpg" alt="Smart Attendance System">
+                            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="WordPress Development" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="image-fallback" style="display: none;">
+                                WordPress Development
+                            </div>
+                            <div class="image-count">
+                                <i class="fas fa-layer-group"></i> 5 images
+                            </div>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>WordPress Projects</h3>
+                            <p>Custom theme development, plugin customization, and full-stack WordPress solutions</p>
+                            <div class="tags">
+                                <span class="tag">WordPress</span>
+                                <span class="tag">PHP</span>
+                                <span class="tag">ACF</span>
+                                <span class="tag">Elementor</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- OpenCV Project (Visible) -->
+                    <div class="gallery-item" data-category="projects tech" data-group="opencv">
+                        <div class="image-container">
+                            <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Computer Vision" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="image-fallback" style="display: none;">
+                                Computer Vision Project
+                            </div>
                             <div class="image-count">
                                 <i class="fas fa-layer-group"></i> 3 images
                             </div>
                         </div>
                         <div class="gallery-info">
                             <h3>Smart Attendance System</h3>
-                            <p>Facial recognition using OpenCV</p>
+                            <p>Facial recognition system using OpenCV and Python for automated attendance</p>
                             <div class="tags">
                                 <span class="tag">OpenCV</span>
                                 <span class="tag">Python</span>
                                 <span class="tag">AI/ML</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- WordPress Projects -->
-                    <div class="gallery-item" data-category="projects wordpress" data-group="wordpress-projects">
-                        <div class="image-container">
-                            <img src="images/projects/wordpress-projects/1.jpg" alt="WordPress Projects">
-                            <div class="image-count">
-                                <i class="fas fa-layer-group"></i> 3 images
-                            </div>
-                        </div>
-                        <div class="gallery-info">
-                            <h3>WordPress Projects</h3>
-                            <p>Custom websites with ACF & Elementor</p>
-                            <div class="tags">
-                                <span class="tag">WordPress</span>
-                                <span class="tag">PHP</span>
-                                <span class="tag">ACF</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Tutor Finder -->
-                    <div class="gallery-item" data-category="projects" data-group="tutor-finder">
-                        <div class="image-container">
-                            <img src="images/projects/tutor-finder/1.jpg" alt="Tutor Finder">
-                            <div class="image-count">
-                                <i class="fas fa-layer-group"></i> 2 images
-                            </div>
-                        </div>
-                        <div class="gallery-info">
-                            <h3>Tutor Finder Web App</h3>
-                            <p>Connecting students and tutors</p>
-                            <div class="tags">
-                                <span class="tag">Node.js</span>
-                                <span class="tag">MySQL</span>
-                                <span class="tag">REST API</span>
+                                <span class="tag">Computer Vision</span>
                             </div>
                         </div>
                     </div>
@@ -622,79 +965,76 @@
                 </div>
             </div>
 
-            <!-- Travel Section -->
+            <!-- Nepal Nature Section (All Visible) -->
             <div class="gallery-section">
-                <h2 class="section-title"><i class="fas fa-plane"></i> Travel Adventures</h2>
+                <h2 class="section-title"><i class="fas fa-mountain"></i> Nepal's Natural Beauty</h2>
                 <div class="gallery-grid">
                     
-                    <!-- Pokhara 2023 -->
-                    <div class="gallery-item" data-category="travel nepal nature" data-group="pokhara-2023">
+                    <!-- Pokhara (Visible) -->
+                    <div class="gallery-item" data-category="travel nature nepal" data-group="pokhara">
                         <div class="image-container">
-                            <img src="images/travel/pokhara-2023/g1.jpg" alt="Pokhara 2023">
+                            <img src="https://images.unsplash.com/photo-1580502304780-4ce781a1980c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pokhara Lakes" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="image-fallback" style="display: none;">
+                                Pokhara Lakes
+                            </div>
+                            <div class="image-count">
+                                <i class="fas fa-layer-group"></i> 6 images
+                            </div>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Pokhara - City of Lakes</h3>
+                            <p>Beautiful Phewa Lake with stunning Annapurna mountain range backdrop</p>
+                            <div class="tags">
+                                <span class="tag">Pokhara</span>
+                                <span class="tag">Lakes</span>
+                                <span class="tag">Mountains</span>
+                                <span class="tag">Nature</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kathmandu Valley (Visible) -->
+                    <div class="gallery-item" data-category="travel nepal" data-group="kathmandu">
+                        <div class="image-container">
+                            <img src="https://images.unsplash.com/photo-1548013146-72479768bada?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Kathmandu Temple" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="image-fallback" style="display: none;">
+                                Kathmandu Temple
+                            </div>
+                            <div class="image-count">
+                                <i class="fas fa-layer-group"></i> 5 images
+                            </div>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Kathmandu Heritage</h3>
+                            <p>Ancient temples, rich culture, and historical architecture in the capital city</p>
+                            <div class="tags">
+                                <span class="tag">Kathmandu</span>
+                                <span class="tag">Heritage</span>
+                                <span class="tag">Temples</span>
+                                <span class="tag">Culture</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Himalayan Trek (Visible) -->
+                    <div class="gallery-item" data-category="travel nature nepal" data-group="himalayas">
+                        <div class="image-container">
+                            <img src="https://images.unsplash.com/photo-1528181304800-259b08848526?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Himalayan Mountains" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="image-fallback" style="display: none;">
+                                Himalayan Mountains
+                            </div>
                             <div class="image-count">
                                 <i class="fas fa-layer-group"></i> 4 images
                             </div>
                         </div>
                         <div class="gallery-info">
-                            <h3>Pokhara 2023</h3>
-                            <p>Beautiful lakes and mountain views</p>
+                            <h3>Himalayan Adventure</h3>
+                            <p>Majestic Himalayan peaks, trekking routes, and breathtaking mountain views</p>
                             <div class="tags">
-                                <span class="tag">Nepal</span>
-                                <span class="tag">Nature</span>
+                                <span class="tag">Himalayas</span>
+                                <span class="tag">Trekking</span>
+                                <span class="tag">Adventure</span>
                                 <span class="tag">Mountains</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Kathmandu 2022 -->
-                    <div class="gallery-item" data-category="travel nepal" data-group="kathmandu-2022">
-                        <div class="image-container">
-                            <img src="images/travel/kathmandu-2022/g1.jpg" alt="Kathmandu 2022">
-                            <div class="image-count">
-                                <i class="fas fa-layer-group"></i> 3 images
-                            </div>
-                        </div>
-                        <div class="gallery-info">
-                            <h3>Kathmandu 2022</h3>
-                            <p>Historical temples and culture</p>
-                            <div class="tags">
-                                <span class="tag">Nepal</span>
-                                <span class="tag">Culture</span>
-                                <span class="tag">Temples</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Chitwan 2021 -->
-                    <div class="gallery-item" data-category="travel nepal nature" data-group="chitwan-2021">
-                        <div class="image-container">
-                            <img src="images/travel/chitwan-2021/g1.jpg" alt="Chitwan 2021">
-                            <div class="image-count">
-                                <i class="fas fa-layer-group"></i> 2 images
-                            </div>
-                        </div>
-                        <div class="gallery-info">
-                            <h3>Chitwan National Park 2021</h3>
-                            <p>Wildlife and jungle safari</p>
-                            <div class="tags">
-                                <span class="tag">Nepal</span>
-                                <span class="tag">Wildlife</span>
-                                <span class="tag">Nature</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Solo Travel Photos -->
-                    <div class="gallery-item solo" data-category="travel" data-group="solo">
-                        <div class="image-container">
-                            <img src="images/travel/solo/1.jpg" alt="Solo Travel">
-                        </div>
-                        <div class="gallery-info">
-                            <h3>Other Travel Moments</h3>
-                            <p>Various travel experiences</p>
-                            <div class="tags">
-                                <span class="tag">Travel</span>
-                                <span class="tag">Photography</span>
                             </div>
                         </div>
                     </div>
@@ -702,11 +1042,21 @@
                 </div>
             </div>
 
-            <!-- Individual Images Section -->
+            <!-- Revealed Blockchain Images (Hidden by default) -->
+            <div id="revealed-blockchain-container" class="revealed-images-container">
+                <h3 class="revealed-images-title">
+                    <i class="fas fa-lock-open"></i> Blockchain Voting System - Revealed Images
+                </h3>
+                <div class="revealed-images-grid" id="revealed-blockchain-grid">
+                    <!-- Blockchain images will be loaded here when revealed -->
+                </div>
+            </div>
+
+            <!-- Single Photos Section -->
             <div class="gallery-section">
-                <h2 class="section-title"><i class="fas fa-camera"></i> Individual Photos</h2>
-                <div class="single-images-grid">
-                    <!-- Individual images will be loaded dynamically -->
+                <h2 class="section-title"><i class="fas fa-camera"></i> Featured Photos</h2>
+                <div class="single-images-grid" id="single-images-container">
+                    <!-- Images will be loaded dynamically -->
                 </div>
             </div>
 
@@ -718,7 +1068,13 @@
         <div class="lightbox-content">
             <span class="close-btn">&times;</span>
             <div class="lightbox-main">
-                <img id="lightbox-image" src="" alt="">
+                <img id="lightbox-image" src="" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="image-fallback" style="display: none; width: 100%; height: 100%;">
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: white; font-size: 1.5rem;">
+                        <i class="fas fa-image" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                        <p>Image failed to load</p>
+                    </div>
+                </div>
                 <div class="lightbox-nav">
                     <button id="prev-btn"><i class="fas fa-chevron-left"></i></button>
                     <button id="next-btn"><i class="fas fa-chevron-right"></i></button>
@@ -740,371 +1096,683 @@
         <div class="container">
             <p>&copy; 2023 Lalit Pant. All rights reserved.</p>
             <div class="social-links">
-                <a href="https://github.com/lalitpanta" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="mailto:pantlaalit@gmail.com"><i class="fas fa-envelope"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://github.com/lalitpanta" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="mailto:pantlaalit@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://linkedin.com/in/lalit-pant" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://twitter.com/lalitpant" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
             </div>
         </div>
     </footer>
 
-    
+    <!-- JavaScript -->
+    <script>
+        // Gallery Data with WORKING Online Images
+        const galleryData = {
+            groups: [
+                {
+                    id: 'blockchain',
+                    name: 'Blockchain Voting System',
+                    description: 'A secure Ethereum-based electronic voting platform implementing smart contracts and decentralized architecture for transparent and tamper-proof elections.',
+                    category: ['projects', 'tech', 'blockchain'],
+                    tags: ['Blockchain', 'Ethereum', 'Smart Contracts', 'Web3.js', 'Solidity', 'Security'],
+                    images: [
+                        { 
+                            src: 'https://images.unsplash.com/photo-1518546305927-5a555bb7020d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 
+                            alt: 'Blockchain Technology',
+                            description: 'Digital blockchain concept with glowing nodes and connections'
+                        },
+                        { 
+                            src: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 
+                            alt: 'Smart Contract Development',
+                            description: 'Code editor showing Solidity smart contract implementation'
+                        },
+                        { 
+                            src: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 
+                            alt: 'Voting Interface Design',
+                            description: 'User-friendly voting dashboard with security features'
+                        },
+                        { 
+                            src: 'https://images.unsplash.com/photo-1620476214170-1d8080f65cdb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 
+                            alt: 'Cryptocurrency Security',
+                            description: 'Advanced encryption and blockchain security mechanisms'
+                        }
+                    ],
+                    isRevealed: false
+                },
+                {
+                    id: 'wordpress',
+                    name: 'WordPress Development Projects',
+                    description: 'Custom WordPress solutions including theme development, plugin customization, and full-stack website implementations for various clients.',
+                    category: ['projects', 'tech'],
+                    tags: ['WordPress', 'PHP', 'MySQL', 'ACF', 'Elementor', 'Web Development'],
+                    images: [
+                        { 
+                            src: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 
+                            alt: 'WordPress Development' 
+                        },
+                        { 
+                            src: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 
+                            alt: 'Website Dashboard' 
+                        },
+                        { 
+                            src: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 
+                            alt: 'Responsive Design' 
+                        },
+                        { 
+                            src: 'https://images.unsplash.com/photo-1545235617-9465d2a55698?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 
+                            alt: 'Web Development' 
+                        }
+                    ]
+                },
+                {
+                    id: 'opencv',
+                    name: 'OpenCV Attendance System',
+                    description: 'Facial recognition-based automated attendance system using OpenCV, Python, and machine learning algorithms for accurate identification.',
+                    category: ['projects', 'tech'],
+                    tags: ['OpenCV', 'Python', 'Computer Vision', 'AI/ML', 'Face Recognition', 'Automation'],
+                    images: [
+                        { 
+                            src: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 
+                            alt: 'Facial Recognition' 
+                        },
+                        { 
+                            src: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 
+                            alt: 'Python Programming' 
+                        },
+                        { 
+                            src: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 
+                            alt: 'Data Analytics' 
+                        }
+                    ]
+                },
+                {
+                    id: 'pokhara',
+                    name: 'Pokhara Natural Beauty',
+                    description: 'The serene city of Pokhara with its beautiful lakes, stunning mountain views, and peaceful environment that showcases Nepal\'s natural beauty.',
+                    category: ['travel', 'nature', 'nepal'],
+                    tags: ['Pokhara', 'Nature', 'Mountains', 'Lakes', 'Nepal', 'Tourism'],
+                    images: [
+                        { 
+                            src: 'https://images.unsplash.com/photo-1580502304780-4ce781a1980c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 
+                            alt: 'Pokhara Lake View' 
+                        },
+                        { 
+                            src: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 
+                            alt: 'Mountain Landscape' 
+                        },
+                        { 
+                            src: 'https://images.unsplash.com/photo-1564507004663-b6dfb3e2ede5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 
+                            alt: 'Lake Activities' 
+                        }
+                    ]
+                },
+                {
+                    id: 'kathmandu',
+                    name: 'Kathmandu Cultural Heritage',
+                    description: 'The historical and cultural heart of Nepal with ancient temples, palaces, and vibrant traditions that date back centuries.',
+                    category: ['travel', 'nepal'],
+                    tags: ['Kathmandu', 'Culture', 'Heritage', 'Temples', 'History', 'Architecture'],
+                    images: [
+                        { 
+                            src: 'https://images.unsplash.com/photo-1548013146-72479768bada?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 
+                            alt: 'Kathmandu Temple' 
+                        },
+                        { 
+                            src: 'https://images.unsplash.com/photo-1524578271613-d550eacf6090?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 
+                            alt: 'Cultural Heritage' 
+                        },
+                        { 
+                            src: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 
+                            alt: 'Historical Architecture' 
+                        }
+                    ]
+                },
+                {
+                    id: 'himalayas',
+                    name: 'Himalayan Adventure',
+                    description: 'Majestic Himalayan peaks, challenging trekking routes, and breathtaking landscapes that define Nepal\'s mountain tourism.',
+                    category: ['travel', 'nature', 'nepal'],
+                    tags: ['Himalayas', 'Mountains', 'Trekking', 'Adventure', 'Nature', 'Landscape'],
+                    images: [
+                        { 
+                            src: 'https://images.unsplash.com/photo-1528181304800-259b08848526?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 
+                            alt: 'Himalayan Peaks' 
+                        },
+                        { 
+                            src: 'https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 
+                            alt: 'Mountain Trekking' 
+                        },
+                        { 
+                            src: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 
+                            alt: 'Sunrise View' 
+                        }
+                    ]
+                }
+            ],
+            soloImages: [
+                {
+                    id: 'nature-1',
+                    src: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                    alt: 'Forest Pathway',
+                    description: 'Peaceful walk through a sunlit forest pathway surrounded by tall trees',
+                    category: ['nature'],
+                    tags: ['Forest', 'Nature', 'Trees', 'Pathway']
+                },
+                {
+                    id: 'nature-2',
+                    src: 'https://images.unsplash.com/photo-1418065460487-3e41a6c84dc5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                    alt: 'Mountain Lake',
+                    description: 'Crystal clear mountain lake reflecting the surrounding peaks',
+                    category: ['nature', 'nepal'],
+                    tags: ['Lake', 'Mountains', 'Reflection', 'Water']
+                },
+                {
+                    id: 'nature-3',
+                    src: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                    alt: 'Misty Mountains',
+                    description: 'Early morning mist covering the Himalayan mountain range',
+                    category: ['nature', 'nepal'],
+                    tags: ['Mist', 'Mountains', 'Morning', 'Himalayas']
+                },
+                {
+                    id: 'tech-1',
+                    src: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                    alt: 'Code Workspace',
+                    description: 'Modern development workspace with multiple monitors and coding environment',
+                    category: ['tech'],
+                    tags: ['Workspace', 'Coding', 'Development', 'Tech']
+                }
+            ]
+        };
+
+        // Gallery State Management
+        let currentGroupIndex = 0;
+        let currentImageIndex = 0;
+        let currentImages = [];
+        let currentFilter = 'all';
+        let blockchainRevealed = false;
+
+        // Initialize Gallery
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeGallery();
+            setupEventListeners();
+            loadSingleImages();
+            handleImageErrors();
+        });
+
+        function handleImageErrors() {
+            // Add error handlers to all images
+            document.querySelectorAll('img').forEach(img => {
+                img.addEventListener('error', function() {
+                    this.style.display = 'none';
+                    const fallback = this.nextElementSibling;
+                    if (fallback && fallback.classList.contains('image-fallback')) {
+                        fallback.style.display = 'flex';
+                    }
+                });
+            });
+        }
+
+        function initializeGallery() {
+            // Add click handlers to gallery items
+            document.querySelectorAll('.gallery-item[data-group]').forEach(item => {
+                const groupId = item.getAttribute('data-group');
+                const group = galleryData.groups.find(g => g.id === groupId);
+                
+                if (group) {
+                    // Store group data for lightbox
+                    item.setAttribute('data-group-id', groupId);
+                    
+                    // Special handling for blockchain
+                    if (groupId === 'blockchain') {
+                        item.addEventListener('click', revealBlockchainImages);
+                    } else {
+                        item.addEventListener('click', () => {
+                            openGroupLightbox(groupId);
+                        });
+                    }
+                }
+            });
+        }
+
+        function setupEventListeners() {
+            // Filter buttons
+            document.querySelectorAll('.filter-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+                    applyFilter(filter);
+                    
+                    // Update active button
+                    document.querySelectorAll('.filter-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                });
+            });
+
+            // Search functionality
+            const searchInput = document.getElementById('search-input');
+            const searchBtn = document.getElementById('search-btn');
+            
+            searchBtn.addEventListener('click', performSearch);
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') performSearch();
+            });
+
+            // Lightbox controls
+            document.querySelector('.close-btn').addEventListener('click', closeLightbox);
+            document.getElementById('prev-btn').addEventListener('click', showPrevImage);
+            document.getElementById('next-btn').addEventListener('click', showNextImage);
+
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                const lightbox = document.getElementById('lightbox-modal');
+                if (lightbox.style.display === 'block') {
+                    if (e.key === 'Escape') closeLightbox();
+                    if (e.key === 'ArrowLeft') showPrevImage();
+                    if (e.key === 'ArrowRight') showNextImage();
+                }
+            });
+
+            // Close lightbox when clicking outside
+            document.getElementById('lightbox-modal').addEventListener('click', function(e) {
+                if (e.target === this) closeLightbox();
+            });
+        }
+
+        function revealBlockchainImages(event) {
+            event.stopPropagation();
+            
+            if (blockchainRevealed) {
+                openGroupLightbox('blockchain');
+                return;
+            }
+            
+            // Reveal blockchain images
+            blockchainRevealed = true;
+            
+            // Update the blockchain item
+            const blockchainItem = document.querySelector('.gallery-item[data-group="blockchain"]');
+            blockchainItem.classList.remove('blockchain-hidden');
+            blockchainItem.classList.add('blockchain-revealed');
+            
+            // Update the text
+            blockchainItem.querySelector('p').textContent = 'Secure Ethereum-based electronic voting platform with smart contracts and Web3.js integration';
+            
+            // Update the tags
+            const tagsContainer = blockchainItem.querySelector('.tags');
+            tagsContainer.innerHTML = `
+                <span class="tag blockchain-tag">🔓 Revealed</span>
+                <span class="tag">Blockchain</span>
+                <span class="tag">Ethereum</span>
+                <span class="tag">Web3.js</span>
+                <span class="tag">Security</span>
+            `;
+            
+            // Show the revealed images container
+            const revealedContainer = document.getElementById('revealed-blockchain-container');
+            const revealedGrid = document.getElementById('revealed-blockchain-grid');
+            
+            // Load blockchain images
+            const blockchainGroup = galleryData.groups.find(g => g.id === 'blockchain');
+            if (blockchainGroup) {
+                blockchainGroup.images.forEach((image, index) => {
+                    const imageElement = document.createElement('div');
+                    imageElement.className = 'gallery-item';
+                    imageElement.setAttribute('data-index', index);
+                    
+                    imageElement.innerHTML = `
+                        <div class="image-container">
+                            <img src="${image.src}" alt="${image.alt}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="image-fallback" style="display: none;">
+                                ${image.alt}
+                            </div>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>${image.alt}</h3>
+                            <p>${image.description}</p>
+                            <div class="tags">
+                                <span class="tag">Blockchain</span>
+                                <span class="tag">Voting System</span>
+                                <span class="tag">Image ${index + 1}</span>
+                            </div>
+                        </div>
+                    `;
+                    
+                    imageElement.addEventListener('click', () => {
+                        openGroupLightbox('blockchain', index);
+                    });
+                    
+                    revealedGrid.appendChild(imageElement);
+                });
+            }
+            
+            // Show the container with animation
+            revealedContainer.classList.add('active');
+            
+            // Update blockchain group state
+            const blockchainGroupData = galleryData.groups.find(g => g.id === 'blockchain');
+            if (blockchainGroupData) {
+                blockchainGroupData.isRevealed = true;
+            }
+            
+            // Change click handler to open lightbox
+            blockchainItem.addEventListener('click', () => {
+                openGroupLightbox('blockchain');
+            });
+            
+            // Add error handlers to new images
+            handleImageErrors();
+        }
+
+        function applyFilter(filter) {
+            currentFilter = filter;
+            const items = document.querySelectorAll('.gallery-item');
+            const singleImages = document.querySelectorAll('.single-image');
+            const revealedItems = document.querySelectorAll('#revealed-blockchain-grid .gallery-item');
+            
+            // Filter main gallery items
+            items.forEach(item => {
+                const categories = item.getAttribute('data-category').split(' ');
+                
+                if (filter === 'all' || categories.includes(filter)) {
+                    item.style.display = 'block';
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, 100);
+                } else {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        item.style.display = 'none';
+                    }, 300);
+                }
+            });
+            
+            // Filter single images
+            singleImages.forEach(image => {
+                const categories = image.getAttribute('data-category').split(' ');
+                
+                if (filter === 'all' || categories.includes(filter)) {
+                    image.style.display = 'block';
+                    setTimeout(() => {
+                        image.style.opacity = '1';
+                        image.style.transform = 'translateY(0)';
+                    }, 100);
+                } else {
+                    image.style.opacity = '0';
+                    image.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        image.style.display = 'none';
+                    }, 300);
+                }
+            });
+            
+            // Filter revealed blockchain images
+            if (blockchainRevealed) {
+                revealedItems.forEach(item => {
+                    if (filter === 'all' || filter === 'projects' || filter === 'tech' || filter === 'blockchain') {
+                        item.style.display = 'block';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, 100);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            }
+        }
+
+        function performSearch() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase().trim();
+            if (!searchTerm) {
+                applyFilter(currentFilter);
+                return;
+            }
+            
+            const items = document.querySelectorAll('.gallery-item');
+            const singleImages = document.querySelectorAll('.single-image');
+            const revealedItems = document.querySelectorAll('#revealed-blockchain-grid .gallery-item');
+            
+            // Search in main gallery items
+            items.forEach(item => {
+                const title = item.querySelector('h3').textContent.toLowerCase();
+                const description = item.querySelector('p').textContent.toLowerCase();
+                const tags = Array.from(item.querySelectorAll('.tag')).map(tag => tag.textContent.toLowerCase());
+                
+                const matches = title.includes(searchTerm) || 
+                               description.includes(searchTerm) ||
+                               tags.some(tag => tag.includes(searchTerm));
+                
+                if (matches) {
+                    item.style.display = 'block';
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, 100);
+                } else {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        item.style.display = 'none';
+                    }, 300);
+                }
+            });
+            
+            // Search in single images
+            singleImages.forEach(image => {
+                const title = image.querySelector('h4').textContent.toLowerCase();
+                const description = image.querySelector('p').textContent.toLowerCase();
+                
+                const matches = title.includes(searchTerm) || 
+                               description.includes(searchTerm);
+                
+                if (matches) {
+                    image.style.display = 'block';
+                    setTimeout(() => {
+                        image.style.opacity = '1';
+                        image.style.transform = 'translateY(0)';
+                    }, 100);
+                } else {
+                    image.style.opacity = '0';
+                    image.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        image.style.display = 'none';
+                    }, 300);
+                }
+            });
+            
+            // Search in revealed blockchain images
+            revealedItems.forEach(item => {
+                const title = item.querySelector('h3').textContent.toLowerCase();
+                const description = item.querySelector('p').textContent.toLowerCase();
+                const tags = Array.from(item.querySelectorAll('.tag')).map(tag => tag.textContent.toLowerCase());
+                
+                const matches = title.includes(searchTerm) || 
+                               description.includes(searchTerm) ||
+                               tags.some(tag => tag.includes(searchTerm));
+                
+                if (matches) {
+                    item.style.display = 'block';
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, 100);
+                } else {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        item.style.display = 'none';
+                    }, 300);
+                }
+            });
+        }
+
+        function openGroupLightbox(groupId, startIndex = 0) {
+            const group = galleryData.groups.find(g => g.id === groupId);
+            if (!group) return;
+
+            currentImages = group.images;
+            currentImageIndex = startIndex;
+            currentGroupIndex = galleryData.groups.findIndex(g => g.id === groupId);
+            
+            updateLightbox();
+            document.getElementById('lightbox-modal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function openSoloLightbox(imageIndex) {
+            currentImages = [galleryData.soloImages[imageIndex]];
+            currentImageIndex = 0;
+            currentGroupIndex = -1;
+            
+            updateLightbox();
+            document.getElementById('lightbox-modal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function updateLightbox() {
+            const image = currentImages[currentImageIndex];
+            const lightboxImage = document.getElementById('lightbox-image');
+            const lightboxTitle = document.getElementById('lightbox-title');
+            const lightboxDescription = document.getElementById('lightbox-description');
+            const lightboxTags = document.getElementById('lightbox-tags');
+            const currentIndexSpan = document.getElementById('current-index');
+            const totalImagesSpan = document.getElementById('total-images');
+            
+            // Hide fallback initially
+            const fallback = lightboxImage.nextElementSibling;
+            if (fallback && fallback.classList.contains('image-fallback')) {
+                fallback.style.display = 'none';
+            }
+            
+            // Preload image
+            const img = new Image();
+            img.onload = function() {
+                lightboxImage.src = image.src;
+                lightboxImage.alt = image.alt;
+                lightboxImage.style.display = 'block';
+                
+                if (currentGroupIndex >= 0) {
+                    const group = galleryData.groups[currentGroupIndex];
+                    lightboxTitle.textContent = group.name;
+                    lightboxDescription.textContent = image.alt || image.description;
+                    
+                    // Update tags
+                    lightboxTags.innerHTML = '';
+                    group.tags.forEach(tag => {
+                        const tagElement = document.createElement('span');
+                        tagElement.className = 'tag';
+                        tagElement.textContent = tag;
+                        tagElement.style.margin = '0.25rem';
+                        lightboxTags.appendChild(tagElement);
+                    });
+                } else {
+                    lightboxTitle.textContent = image.alt;
+                    lightboxDescription.textContent = image.description;
+                    
+                    // Update tags
+                    lightboxTags.innerHTML = '';
+                    image.tags.forEach(tag => {
+                        const tagElement = document.createElement('span');
+                        tagElement.className = 'tag';
+                        tagElement.textContent = tag;
+                        tagElement.style.margin = '0.25rem';
+                        lightboxTags.appendChild(tagElement);
+                    });
+                }
+                
+                currentIndexSpan.textContent = currentImageIndex + 1;
+                totalImagesSpan.textContent = currentImages.length;
+            };
+            
+            img.onerror = function() {
+                lightboxImage.style.display = 'none';
+                if (fallback && fallback.classList.contains('image-fallback')) {
+                    fallback.style.display = 'block';
+                }
+                
+                if (currentGroupIndex >= 0) {
+                    const group = galleryData.groups[currentGroupIndex];
+                    lightboxTitle.textContent = group.name;
+                    lightboxDescription.textContent = image.alt || image.description;
+                } else {
+                    lightboxTitle.textContent = image.alt;
+                    lightboxDescription.textContent = image.description;
+                }
+                
+                currentIndexSpan.textContent = currentImageIndex + 1;
+                totalImagesSpan.textContent = currentImages.length;
+            };
+            
+            img.src = image.src;
+        }
+
+        function showPrevImage() {
+            if (currentImages.length <= 1) return;
+            currentImageIndex = (currentImageIndex - 1 + currentImages.length) % currentImages.length;
+            updateLightbox();
+        }
+
+        function showNextImage() {
+            if (currentImages.length <= 1) return;
+            currentImageIndex = (currentImageIndex + 1) % currentImages.length;
+            updateLightbox();
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox-modal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function loadSingleImages() {
+            const container = document.getElementById('single-images-container');
+            if (!container) return;
+
+            galleryData.soloImages.forEach((image, index) => {
+                const imageElement = document.createElement('div');
+                imageElement.className = 'single-image';
+                imageElement.setAttribute('data-index', index);
+                imageElement.setAttribute('data-category', image.category.join(' '));
+                
+                imageElement.innerHTML = `
+                    <img src="${image.src}" alt="${image.alt}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="image-fallback" style="display: none;">
+                        ${image.alt}
+                    </div>
+                    <div class="image-overlay">
+                        <h4>${image.alt}</h4>
+                        <p>${image.description}</p>
+                    </div>
+                `;
+                
+                imageElement.addEventListener('click', () => openSoloLightbox(index));
+                container.appendChild(imageElement);
+            });
+        }
+
+        // Preload images for better performance
+        function preloadImages() {
+            const allImages = [
+                ...galleryData.groups.flatMap(group => group.images.map(img => img.src)),
+                ...galleryData.soloImages.map(img => img.src)
+            ];
+            
+            allImages.forEach(src => {
+                const img = new Image();
+                img.src = src;
+            });
+        }
+
+        // Start preloading
+        preloadImages();
+    </script>
     <script src="../assets/js/main.js"></script>
 </body>
 </html>
-
-
-<script>
-    // Gallery Data Structure
-const galleryData = {
-    groups: [
-        {
-            id: 'blockchain-voting',
-            name: 'Blockchain Voting System',
-            description: 'Secure Ethereum-based voting platform with smart contracts',
-            category: ['projects', 'blockchain'],
-            tags: ['Blockchain', 'Ethereum', 'Web3.js', 'Smart Contracts'],
-            images: [
-                { src: 'images/projects/blockchain-voting/1.jpg', alt: 'Voting Interface' },
-                { src: 'images/projects/blockchain-voting/2.jpg', alt: 'Smart Contract Code' },
-                { src: 'images/projects/blockchain-voting/3.jpg', alt: 'Admin Dashboard' }
-            ]
-        },
-        {
-            id: 'smart-attendance',
-            name: 'Smart Attendance System',
-            description: 'Facial recognition attendance system using OpenCV',
-            category: ['projects', 'opencv'],
-            tags: ['OpenCV', 'Python', 'AI/ML', 'Face Recognition'],
-            images: [
-                { src: 'images/projects/smart-attendance/1.jpg', alt: 'Face Detection' },
-                { src: 'images/projects/smart-attendance/2.jpg', alt: 'Attendance Dashboard' },
-                { src: 'images/projects/smart-attendance/3.jpg', alt: 'System Architecture' }
-            ]
-        },
-        {
-            id: 'wordpress-projects',
-            name: 'WordPress Projects',
-            description: 'Custom WordPress websites with ACF and Elementor',
-            category: ['projects', 'wordpress'],
-            tags: ['WordPress', 'PHP', 'ACF', 'Elementor', 'MySQL'],
-            images: [
-                { src: 'images/projects/wordpress-projects/1.jpg', alt: 'Irish Flooring Website' },
-                { src: 'images/projects/wordpress-projects/2.jpg', alt: 'Restaurant Website' },
-                { src: 'images/projects/wordpress-projects/3.jpg', alt: 'Dentist Website' }
-            ]
-        },
-        {
-            id: 'tutor-finder',
-            name: 'Tutor Finder Web App',
-            description: 'Platform connecting students with tutors',
-            category: ['projects'],
-            tags: ['Node.js', 'MySQL', 'REST API', 'JavaScript'],
-            images: [
-                { src: 'images/projects/tutor-finder/1.jpg', alt: 'Home Page' },
-                { src: 'images/projects/tutor-finder/2.jpg', alt: 'Tutor Dashboard' }
-            ]
-        },
-        {
-            id: 'pokhara-2023',
-            name: 'Pokhara 2023',
-            description: 'Beautiful lakes and mountain views in Pokhara, Nepal',
-            category: ['travel', 'nepal', 'nature'],
-            tags: ['Nepal', 'Pokhara', 'Nature', 'Mountains', 'Lakes'],
-            images: [
-                { src: 'images/travel/pokhara-2023/g1.jpg', alt: 'Phewa Lake' },
-                { src: 'images/travel/pokhara-2023/g2.jpg', alt: 'Mountain View' },
-                { src: 'images/travel/pokhara-2023/g3.jpg', alt: 'Boating' },
-                { src: 'images/travel/pokhara-2023/g4.jpg', alt: 'Sunset' }
-            ]
-        },
-        {
-            id: 'kathmandu-2022',
-            name: 'Kathmandu 2022',
-            description: 'Historical temples and cultural heritage in Kathmandu',
-            category: ['travel', 'nepal'],
-            tags: ['Nepal', 'Kathmandu', 'Temples', 'Culture', 'Heritage'],
-            images: [
-                { src: 'images/travel/kathmandu-2022/g1.jpg', alt: 'Pashupatinath Temple' },
-                { src: 'images/travel/kathmandu-2022/g2.jpg', alt: 'Durbar Square' },
-                { src: 'images/travel/kathmandu-2022/g3.jpg', alt: 'Street Food' }
-            ]
-        },
-        {
-            id: 'chitwan-2021',
-            name: 'Chitwan National Park 2021',
-            description: 'Wildlife safari and jungle adventure in Chitwan',
-            category: ['travel', 'nepal', 'nature'],
-            tags: ['Nepal', 'Chitwan', 'Wildlife', 'Safari', 'Nature'],
-            images: [
-                { src: 'images/travel/chitwan-2021/g1.jpg', alt: 'Elephant Safari' },
-                { src: 'images/travel/chitwan-2021/g2.jpg', alt: 'Rhino Spotting' }
-            ]
-        }
-    ],
-    soloImages: [
-        {
-            id: 'solo-1',
-            src: 'images/travel/solo/1.jpg',
-            alt: 'Travel Photo 1',
-            category: ['travel'],
-            tags: ['Travel', 'Photography'],
-            description: 'Beautiful sunset from my travels'
-        },
-        {
-            id: 'solo-2',
-            src: 'images/travel/solo/2.jpg',
-            alt: 'Travel Photo 2',
-            category: ['travel'],
-            tags: ['Travel', 'Adventure'],
-            description: 'Mountain hiking adventure'
-        },
-        {
-            id: 'solo-3',
-            src: 'images/travel/solo/3.jpg',
-            alt: 'Travel Photo 3',
-            category: ['travel'],
-            tags: ['Travel', 'Nature'],
-            description: 'Peaceful nature walk'
-        }
-    ]
-};
-
-// DOM Elements
-let currentGroupIndex = 0;
-let currentImageIndex = 0;
-let currentImages = [];
-let currentFilter = 'all';
-
-// Initialize Gallery
-document.addEventListener('DOMContentLoaded', function() {
-    initializeGallery();
-    setupEventListeners();
-    loadSoloImages();
-});
-
-function initializeGallery() {
-    // Add group images to data attributes
-    document.querySelectorAll('.gallery-item[data-group]').forEach(item => {
-        const groupId = item.getAttribute('data-group');
-        const group = galleryData.groups.find(g => g.id === groupId);
-        if (group) {
-            item.setAttribute('data-images', JSON.stringify(group.images.map(img => img.src)));
-            item.setAttribute('data-titles', JSON.stringify(group.images.map(img => img.alt)));
-        }
-    });
-}
-
-function setupEventListeners() {
-    // Filter buttons
-    document.querySelectorAll('.filter-btn').forEach(button => {
-        button.addEventListener('click', function() {
-            const filter = this.getAttribute('data-filter');
-            applyFilter(filter);
-            
-            // Update active button
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            this.classList.add('active');
-        });
-    });
-
-    // Search functionality
-    const searchInput = document.getElementById('search-input');
-    const searchBtn = document.getElementById('search-btn');
-    
-    searchBtn.addEventListener('click', performSearch);
-    searchInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') performSearch();
-    });
-
-    // Gallery item clicks
-    document.querySelectorAll('.gallery-item').forEach(item => {
-        item.addEventListener('click', function() {
-            const groupId = this.getAttribute('data-group');
-            if (groupId) {
-                openGroupLightbox(groupId);
-            }
-        });
-    });
-
-    // Solo image clicks will be handled in loadSoloImages()
-
-    // Lightbox controls
-    document.querySelector('.close-btn').addEventListener('click', closeLightbox);
-    document.getElementById('prev-btn').addEventListener('click', showPrevImage);
-    document.getElementById('next-btn').addEventListener('click', showNextImage);
-
-    // Keyboard navigation
-    document.addEventListener('keydown', function(e) {
-        const lightbox = document.getElementById('lightbox-modal');
-        if (lightbox.style.display === 'block') {
-            if (e.key === 'Escape') closeLightbox();
-            if (e.key === 'ArrowLeft') showPrevImage();
-            if (e.key === 'ArrowRight') showNextImage();
-        }
-    });
-
-    // Close lightbox when clicking outside
-    document.getElementById('lightbox-modal').addEventListener('click', function(e) {
-        if (e.target === this) closeLightbox();
-    });
-}
-
-function applyFilter(filter) {
-    currentFilter = filter;
-    const items = document.querySelectorAll('.gallery-item');
-    
-    items.forEach(item => {
-        const categories = item.getAttribute('data-category').split(' ');
-        
-        if (filter === 'all' || categories.includes(filter)) {
-            item.style.display = 'block';
-            setTimeout(() => {
-                item.style.opacity = '1';
-                item.style.transform = 'scale(1)';
-            }, 100);
-        } else {
-            item.style.opacity = '0';
-            item.style.transform = 'scale(0.8)';
-            setTimeout(() => {
-                item.style.display = 'none';
-            }, 300);
-        }
-    });
-}
-
-function performSearch() {
-    const searchTerm = document.getElementById('search-input').value.toLowerCase();
-    
-    document.querySelectorAll('.gallery-item').forEach(item => {
-        const title = item.querySelector('h3').textContent.toLowerCase();
-        const description = item.querySelector('p').textContent.toLowerCase();
-        const tags = Array.from(item.querySelectorAll('.tag')).map(tag => tag.textContent.toLowerCase());
-        
-        const matches = title.includes(searchTerm) || 
-                       description.includes(searchTerm) ||
-                       tags.some(tag => tag.includes(searchTerm));
-        
-        if (matches) {
-            item.style.display = 'block';
-            setTimeout(() => {
-                item.style.opacity = '1';
-                item.style.transform = 'scale(1)';
-            }, 100);
-        } else {
-            item.style.opacity = '0';
-            item.style.transform = 'scale(0.8)';
-            setTimeout(() => {
-                item.style.display = 'none';
-            }, 300);
-        }
-    });
-}
-
-function openGroupLightbox(groupId) {
-    const group = galleryData.groups.find(g => g.id === groupId);
-    if (!group) return;
-
-    currentImages = group.images;
-    currentImageIndex = 0;
-    currentGroupIndex = galleryData.groups.findIndex(g => g.id === groupId);
-    
-    updateLightbox();
-    document.getElementById('lightbox-modal').style.display = 'block';
-    document.body.style.overflow = 'hidden';
-}
-
-function openSoloLightbox(imageIndex) {
-    currentImages = galleryData.soloImages;
-    currentImageIndex = imageIndex;
-    currentGroupIndex = -1;
-    
-    updateLightbox();
-    document.getElementById('lightbox-modal').style.display = 'block';
-    document.body.style.overflow = 'hidden';
-}
-
-function updateLightbox() {
-    const image = currentImages[currentImageIndex];
-    const lightboxImage = document.getElementById('lightbox-image');
-    const lightboxTitle = document.getElementById('lightbox-title');
-    const lightboxDescription = document.getElementById('lightbox-description');
-    const lightboxTags = document.getElementById('lightbox-tags');
-    const currentIndexSpan = document.getElementById('current-index');
-    const totalImagesSpan = document.getElementById('total-images');
-    
-    lightboxImage.src = image.src;
-    lightboxImage.alt = image.alt;
-    
-    if (currentGroupIndex >= 0) {
-        const group = galleryData.groups[currentGroupIndex];
-        lightboxTitle.textContent = group.name;
-        lightboxDescription.textContent = image.alt;
-        
-        // Update tags
-        lightboxTags.innerHTML = '';
-        group.tags.forEach(tag => {
-            const tagElement = document.createElement('span');
-            tagElement.className = 'tag';
-            tagElement.textContent = tag;
-            lightboxTags.appendChild(tagElement);
-        });
-    } else {
-        lightboxTitle.textContent = image.alt;
-        lightboxDescription.textContent = image.description;
-        
-        // Update tags
-        lightboxTags.innerHTML = '';
-        image.tags.forEach(tag => {
-            const tagElement = document.createElement('span');
-            tagElement.className = 'tag';
-            tagElement.textContent = tag;
-            lightboxTags.appendChild(tagElement);
-        });
-    }
-    
-    currentIndexSpan.textContent = currentImageIndex + 1;
-    totalImagesSpan.textContent = currentImages.length;
-}
-
-function showPrevImage() {
-    if (currentImages.length === 0) return;
-    currentImageIndex = (currentImageIndex - 1 + currentImages.length) % currentImages.length;
-    updateLightbox();
-}
-
-function showNextImage() {
-    if (currentImages.length === 0) return;
-    currentImageIndex = (currentImageIndex + 1) % currentImages.length;
-    updateLightbox();
-}
-
-function closeLightbox() {
-    document.getElementById('lightbox-modal').style.display = 'none';
-    document.body.style.overflow = 'auto';
-}
-
-function loadSoloImages() {
-    const soloGrid = document.querySelector('.single-images-grid');
-    if (!soloGrid) return;
-
-    galleryData.soloImages.forEach((image, index) => {
-        const imageElement = document.createElement('div');
-        imageElement.className = 'single-image';
-        imageElement.setAttribute('data-index', index);
-        
-        imageElement.innerHTML = `
-            <img src="${image.src}" alt="${image.alt}">
-            <div class="image-overlay">
-                <h4>${image.alt}</h4>
-                <p>${image.description}</p>
-            </div>
-        `;
-        
-        imageElement.addEventListener('click', () => openSoloLightbox(index));
-        soloGrid.appendChild(imageElement);
-    });
-}
-</script>
