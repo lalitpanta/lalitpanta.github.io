@@ -1,0 +1,1787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me | Lalit Pant - Backend & WordPress Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    
+    <style>
+        /* Base Styles - Mobile First */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #7c3aed;
+            --secondary-dark: #6d28d9;
+            --dark: #0f172a;
+            --darker: #020617;
+            --light: #f8fafc;
+            --lighter: #ffffff;
+            --gray: #64748b;
+            --gray-light: #e2e8f0;
+            --gray-dark: #475569;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --info: #3b82f6;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --radius: 12px;
+            --radius-lg: 20px;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+            --gradient-dark: linear-gradient(135deg, var(--primary-dark), var(--secondary-dark));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            html {
+                font-size: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            html {
+                font-size: 14px;
+            }
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: var(--dark);
+            background: linear-gradient(135deg, #f8fafc 0%, #f0f9ff 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            color: var(--dark);
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 1.75rem);
+            color: var(--dark);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+            font-size: clamp(1rem, 2vw, 1.05rem);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 clamp(15px, 3vw, 20px);
+        }
+
+        section {
+            padding: clamp(60px, 8vw, 100px) 0;
+            position: relative;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: clamp(12px, 2vw, 14px) clamp(24px, 3vw, 32px);
+            border-radius: var(--radius);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            outline: none;
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary:hover {
+            background: var(--gradient-dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(37, 99, 235, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--dark);
+            border: 2px solid var(--gray-light);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .text-gradient {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .highlight {
+            position: relative;
+            display: inline-block;
+        }
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: rgba(37, 99, 235, 0.2);
+            z-index: -1;
+            border-radius: 4px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: clamp(40px, 6vw, 60px);
+        }
+
+        .section-header h2 {
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: clamp(60px, 10vw, 80px);
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            max-width: min(90%, 600px);
+            margin: 0 auto;
+            font-size: clamp(1rem, 2vw, 1.1rem);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: clamp(15px, 3vw, 20px) 0;
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            padding: clamp(12px, 2vw, 15px) 0;
+            box-shadow: var(--shadow);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: clamp(5px, 1vw, 10px);
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .logo .dot {
+            width: clamp(6px, 1vw, 8px);
+            height: clamp(6px, 1vw, 8px);
+            background: var(--gradient);
+            border-radius: 50%;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: clamp(20px, 3vw, 40px);
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+            transition: var(--transition);
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: clamp(120px, 15vw, 160px);
+            padding-bottom: clamp(60px, 8vw, 100px);
+            background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -30%;
+            width: min(800px, 150vw);
+            height: min(800px, 150vw);
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -15%;
+            width: min(600px, 120vw);
+            height: min(600px, 120vw);
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: min(90%, 800px);
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            padding: clamp(6px, 1vw, 8px) clamp(15px, 2vw, 20px);
+            border-radius: 50px;
+            margin-bottom: clamp(20px, 3vw, 30px);
+            box-shadow: var(--shadow);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hero-badge .badge-text {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+        }
+
+        .hero-badge .badge-icon {
+            width: clamp(6px, 1vw, 8px);
+            height: clamp(6px, 1vw, 8px);
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .hero h1 {
+            margin-bottom: clamp(15px, 2vw, 20px);
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.25rem);
+            color: var(--gray);
+            margin-bottom: clamp(20px, 3vw, 30px);
+            font-weight: 400;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: clamp(15px, 2vw, 20px);
+            justify-content: center;
+            margin-top: clamp(30px, 4vw, 40px);
+            flex-wrap: wrap;
+        }
+
+        /* About Intro */
+        .about-intro {
+            background: white;
+            position: relative;
+        }
+
+        .intro-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(40px, 6vw, 80px);
+            align-items: center;
+        }
+
+        @media (min-width: 992px) {
+            .intro-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .intro-text h3 {
+            font-size: clamp(1.75rem, 3vw, 2rem);
+            margin-bottom: clamp(15px, 2vw, 20px);
+        }
+
+        .intro-text p {
+            font-size: clamp(1rem, 1.5vw, 1.1rem);
+            line-height: 1.8;
+        }
+
+        .intro-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: clamp(20px, 3vw, 30px);
+            margin-top: clamp(30px, 4vw, 40px);
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: clamp(20px, 3vw, 25px);
+            background: var(--lighter);
+            border-radius: var(--radius);
+            border: 1px solid var(--gray-light);
+            transition: var(--transition);
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        .stat-box .number {
+            font-size: clamp(2rem, 3vw, 2.5rem);
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 5px;
+        }
+
+        .stat-box .label {
+            font-size: clamp(0.8rem, 1vw, 0.9rem);
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        .intro-image {
+            position: relative;
+            order: -1;
+        }
+
+        @media (min-width: 992px) {
+            .intro-image {
+                order: 1;
+            }
+        }
+
+        .intro-image .main-image {
+            width: 100%;
+            height: clamp(300px, 50vw, 500px);
+            object-fit: cover;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+            transform: perspective(1000px) rotateY(-10deg);
+            transition: var(--transition);
+        }
+
+        .intro-image .main-image:hover {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+
+        .floating-element {
+            position: absolute;
+            background: white;
+            padding: clamp(15px, 2vw, 20px);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            animation: float 6s ease-in-out infinite;
+            display: none;
+        }
+
+        @media (min-width: 1200px) {
+            .floating-element {
+                display: block;
+            }
+        }
+
+        .floating-element:nth-child(2) {
+            top: -20px;
+            left: -30px;
+            width: clamp(120px, 15vw, 150px);
+            animation-delay: 1s;
+        }
+
+        .floating-element:nth-child(3) {
+            bottom: 30px;
+            right: -20px;
+            width: clamp(140px, 18vw, 180px);
+            animation-delay: 2s;
+        }
+
+        .floating-element .icon {
+            width: clamp(30px, 4vw, 40px);
+            height: clamp(30px, 4vw, 40px);
+            background: var(--gradient);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: clamp(8px, 1vw, 10px);
+            color: white;
+        }
+
+        .floating-element h5 {
+            font-size: clamp(0.8rem, 1vw, 0.9rem);
+            margin-bottom: 5px;
+        }
+
+        .floating-element p {
+            font-size: clamp(0.7rem, 0.9vw, 0.8rem);
+            margin: 0;
+            color: var(--gray);
+        }
+
+        /* Timeline */
+        .journey-timeline {
+            background: linear-gradient(135deg, var(--darker) 0%, #1e293b 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .journey-timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(124, 58, 237, 0.1) 0%, transparent 20%);
+        }
+
+        .journey-timeline .section-header h2,
+        .journey-timeline .section-header p {
+            color: white;
+        }
+
+        .timeline-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.3), transparent);
+        }
+
+        @media (min-width: 768px) {
+            .timeline-container::before {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        .timeline-item {
+            margin-bottom: clamp(40px, 6vw, 60px);
+            position: relative;
+            width: 100%;
+            padding-left: 70px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        @media (min-width: 768px) {
+            .timeline-item {
+                width: calc(50% - 30px);
+                padding-left: 0;
+                padding-right: 60px;
+            }
+            
+            .timeline-item:nth-child(odd) {
+                margin-left: 0;
+                margin-right: auto;
+            }
+            
+            .timeline-item:nth-child(even) {
+                margin-left: auto;
+                margin-right: 0;
+                padding-left: 60px;
+                padding-right: 0;
+            }
+        }
+
+        .timeline-dot {
+            position: absolute;
+            top: 0;
+            left: 18px;
+            width: clamp(20px, 3vw, 24px);
+            height: clamp(20px, 3vw, 24px);
+            border-radius: 50%;
+            background: var(--gradient);
+            border: 4px solid var(--darker);
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
+        }
+
+        @media (min-width: 768px) {
+            .timeline-item:nth-child(odd) .timeline-dot {
+                right: -12px;
+                left: auto;
+            }
+            
+            .timeline-item:nth-child(even) .timeline-dot {
+                left: -12px;
+            }
+        }
+
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: clamp(20px, 3vw, 30px);
+            border-radius: var(--radius);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .timeline-content:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .timeline-content .year {
+            display: inline-block;
+            background: var(--gradient);
+            color: white;
+            padding: clamp(4px, 0.5vw, 5px) clamp(12px, 1.5vw, 15px);
+            border-radius: 50px;
+            font-size: clamp(0.8rem, 1vw, 0.9rem);
+            font-weight: 600;
+            margin-bottom: clamp(10px, 1.5vw, 15px);
+        }
+
+        .timeline-content h4 {
+            color: white;
+            font-size: clamp(1.1rem, 1.5vw, 1.25rem);
+            margin-bottom: clamp(8px, 1vw, 10px);
+        }
+
+        .timeline-content p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0;
+            font-size: clamp(0.9rem, 1.2vw, 1rem);
+        }
+
+        /* Skills */
+        .skills-section {
+            background: white;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(20px, 3vw, 30px);
+        }
+
+        @media (min-width: 768px) {
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .skills-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .skill-category {
+            background: var(--lighter);
+            padding: clamp(20px, 3vw, 30px);
+            border-radius: var(--radius);
+            border: 1px solid var(--gray-light);
+            transition: var(--transition);
+        }
+
+        .skill-category:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        .skill-category h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: clamp(20px, 2.5vw, 25px);
+            padding-bottom: clamp(12px, 1.5vw, 15px);
+            border-bottom: 2px solid var(--gray-light);
+        }
+
+        .skill-category h3 i {
+            width: clamp(35px, 4vw, 40px);
+            height: clamp(35px, 4vw, 40px);
+            background: var(--gradient);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: clamp(1rem, 1.2vw, 1.2rem);
+        }
+
+        .skill-list {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(12px, 1.5vw, 15px);
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-info {
+            display: flex;
+            align-items: center;
+            gap: clamp(8px, 1vw, 10px);
+            min-width: 120px;
+        }
+
+        .skill-info i {
+            color: var(--primary);
+            font-size: clamp(1rem, 1.2vw, 1.2rem);
+            width: 24px;
+        }
+
+        .skill-info span {
+            font-weight: 500;
+            font-size: clamp(0.9rem, 1vw, 1rem);
+        }
+
+        .skill-bar {
+            flex: 1;
+            min-width: 150px;
+            height: 8px;
+            background: var(--gray-light);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 0 clamp(10px, 1.5vw, 15px);
+        }
+
+        .skill-level {
+            height: 100%;
+            background: var(--gradient);
+            border-radius: 4px;
+            width: 0;
+            transition: width 1.5s ease;
+        }
+
+        /* Values */
+        .values-section {
+            background: linear-gradient(135deg, #f0f9ff 0%, #f5f3ff 100%);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(20px, 3vw, 30px);
+        }
+
+        @media (min-width: 640px) {
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .values-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .value-card {
+            background: white;
+            padding: clamp(30px, 4vw, 40px) clamp(20px, 3vw, 30px);
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .value-icon {
+            width: clamp(60px, 8vw, 70px);
+            height: clamp(60px, 8vw, 70px);
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(124, 58, 237, 0.1));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto clamp(15px, 2vw, 20px);
+            color: var(--primary);
+            font-size: clamp(1.5rem, 2vw, 1.8rem);
+        }
+
+        .value-card h3 {
+            font-size: clamp(1.25rem, 1.5vw, 1.5rem);
+            margin-bottom: clamp(12px, 1.5vw, 15px);
+        }
+
+        /* CTA */
+        .cta-section {
+            background: var(--gradient);
+            color: white;
+            text-align: center;
+            padding: clamp(60px, 8vw, 100px) 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 20%);
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: min(90%, 700px);
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            color: white;
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: clamp(15px, 2vw, 20px);
+        }
+
+        .cta-content p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: clamp(1rem, 1.5vw, 1.2rem);
+            margin-bottom: clamp(30px, 4vw, 40px);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: clamp(15px, 2vw, 20px);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-buttons .btn-primary {
+            background: white;
+            color: var(--primary);
+        }
+
+        .cta-buttons .btn-primary:hover {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .cta-buttons .btn-secondary {
+            color: white;
+            border-color: white;
+        }
+
+        .cta-buttons .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker);
+            color: white;
+            padding: clamp(60px, 8vw, 80px) 0 clamp(20px, 3vw, 30px);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(30px, 4vw, 40px);
+            margin-bottom: clamp(30px, 4vw, 40px);
+        }
+
+        @media (min-width: 768px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .footer-content {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .footer-col h3 {
+            color: white;
+            font-size: clamp(1.1rem, 1.5vw, 1.25rem);
+            margin-bottom: clamp(15px, 2vw, 20px);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-col h3 i {
+            color: var(--primary);
+        }
+
+        .footer-col p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: clamp(15px, 2vw, 20px);
+            font-size: clamp(0.9rem, 1.2vw, 1rem);
+        }
+
+        .social-links {
+            display: flex;
+            gap: clamp(12px, 1.5vw, 15px);
+            margin-top: clamp(15px, 2vw, 20px);
+        }
+
+        .social-links a {
+            width: clamp(40px, 4vw, 44px);
+            height: clamp(40px, 4vw, 44px);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: clamp(1rem, 1.2vw, 1.2rem);
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: clamp(8px, 1vw, 10px);
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: clamp(0.9rem, 1.1vw, 1rem);
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer-links a i {
+            color: var(--primary);
+            font-size: clamp(0.7rem, 0.9vw, 0.8rem);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: clamp(20px, 3vw, 30px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: clamp(0.8rem, 1vw, 0.9rem);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        /* Mobile Navigation */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: var(--shadow);
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition);
+                gap: 20px;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .hamburger {
+                display: block;
+                z-index: 1001;
+            }
+
+            .hero-buttons,
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .intro-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .intro-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .skills-grid,
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: clamp(2rem, 6vw, 2.5rem);
+            }
+            
+            .hero-subtitle {
+                font-size: clamp(1rem, 3vw, 1.1rem);
+            }
+            
+            .section-header h2 {
+                font-size: clamp(1.5rem, 4vw, 1.75rem);
+            }
+            
+            .skill-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .skill-bar {
+                width: 100%;
+                margin: 5px 0 0 0;
+            }
+        }
+
+        /* Additional Responsive Improvements */
+        @media (max-width: 992px) {
+            .intro-image .main-image {
+                transform: perspective(1000px) rotateY(0deg);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-col {
+                text-align: center;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+            
+            .footer-links a {
+                justify-content: center;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .navbar, .hero-buttons, .cta-section, .social-links, .copyright {
+                display: none !important;
+            }
+            
+            .hero {
+                padding-top: 50px;
+                background: none !important;
+            }
+            
+            section {
+                padding: 40px 0;
+                page-break-inside: avoid;
+            }
+            
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            
+            .text-gradient, h1 {
+                background: none !important;
+                -webkit-text-fill-color: black !important;
+                color: black !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span>Lalit</span>
+                <div class="dot"></div>
+                <span>Pant</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <button class="hamburger" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <div class="badge-icon"></div>
+                    <span class="badge-text">Computer Engineering Student & Developer</span>
+                </div>
+                <h1>About Me</h1>
+                <p class="hero-subtitle">Passionate Backend Developer & WordPress Specialist crafting digital solutions with precision and innovation</p>
+                <div class="hero-buttons">
+                    <a href="#journey" class="btn btn-primary">
+                        <i class="fas fa-road"></i> View My Journey
+                    </a>
+                    <a href="projects.html" class="btn btn-secondary">
+                        <i class="fas fa-code"></i> See My Work
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Intro -->
+    <section class="about-intro">
+        <div class="container">
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h3>Building Digital Foundations with Code & Creativity</h3>
+                    <p>Hi, I'm <span class="highlight">Lalit Pant</span>, a final-year Computer Engineering student at Pokhara University with a deep passion for backend development, WordPress customization, and innovative technology solutions.</p>
+                    <p>My journey in technology started with curiosity and has evolved into a dedicated pursuit of creating efficient, scalable, and user-focused digital products. I specialize in bridging the gap between complex backend systems and intuitive user experiences.</p>
+                    <p>Currently, I'm expanding my expertise into full-stack development while exploring the fascinating realms of AI/ML and blockchain technology. Every project is an opportunity to learn, grow, and make a meaningful impact.</p>
+                    
+                    <div class="intro-stats">
+                        <div class="stat-box">
+                            <div class="number">3+</div>
+                            <div class="label">Years Experience</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="number">25+</div>
+                            <div class="label">Projects Delivered</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="number">100%</div>
+                            <div class="label">Client Satisfaction</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="intro-image">
+                    <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Development Workspace" class="main-image" loading="lazy">
+                    
+                    <div class="floating-element">
+                        <div class="icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h5>Clean Code</h5>
+                        <p>Writing efficient, maintainable code</p>
+                    </div>
+                    
+                    <div class="floating-element">
+                        <div class="icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h5>Fast Solutions</h5>
+                        <p>Rapid development & deployment</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journey Timeline -->
+    <section class="journey-timeline" id="journey">
+        <div class="container">
+            <div class="section-header">
+                <h2>My Journey</h2>
+                <p>From curiosity to code – the path that shaped my development career</p>
+            </div>
+            
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="year">2020 - Present</span>
+                        <h4>Computer Engineering Student</h4>
+                        <p>Pursuing Bachelor's in Computer Engineering at Pokhara University. Focused on software architecture, algorithms, and system design. Active participant in coding competitions and tech workshops.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="year">2021 - Present</span>
+                        <h4>Backend Developer</h4>
+                        <p>Started professional backend development journey. Built RESTful APIs, database architectures, and server-side logic for various applications. Specialized in Node.js and .NET Core MVC.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="year">2022 - Present</span>
+                        <h4>WordPress Developer</h4>
+                        <p>Professional WordPress development with custom theme/plugin creation. Worked with corporate clients to build scalable websites using ACF, Elementor, and custom PHP functionality.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="year">2022 - 2023</span>
+                        <h4>Blockchain Project Lead</h4>
+                        <p>Developed an Ethereum-based voting system reviewed by Nepal Election Commission. Implemented smart contracts and Web3.js for a secure, transparent voting platform.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="year">Future</span>
+                        <h4>Full Stack & AI/ML Focus</h4>
+                        <p>Currently expanding into full-stack development while exploring AI/ML applications. Working on projects that combine my backend expertise with modern frontend technologies and machine learning.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Technical Expertise</h2>
+                <p>Technologies and skills I've mastered through hands-on experience</p>
+            </div>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>
+                        <i class="fas fa-server"></i>
+                        Backend Development
+                    </h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <i class="fab fa-node-js"></i>
+                                <span>Node.js</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-level" data-width="90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <i class="fas fa-code"></i>
+                                <span>.NET Core</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-level" data-width="85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <i class="fas fa-database"></i>
+                                <span>MySQL</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-level" data-width="95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <i class="fas fa-project-diagram"></i>
+                                <span>REST APIs</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-level" data-width="92%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>
+                        <i class="fab fa-wordpress"></i>
+                        WordPress & Web
+                    </h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <i class="fab fa-wordpress"></i>
+                                <span>WordPress</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-level" data-width="95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <i class="fab fa-php"></i>
+                                <span>PHP</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-level" data-width="88%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <i class="fas fa-puzzle-piece"></i>
+                                <span>ACF/Elementor</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-level" data-width="90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <i class="fab fa-js"></i>
+                                <span>JavaScript</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-level" data-width="80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>
+                        <i class="fas fa-rocket"></i>
+                        Emerging Technologies
+                    </h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <i class="fab fa-ethereum"></i>
+                                <span>Blockchain</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-level" data-width="75%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <i class="fas fa-brain"></i>
+                                <span>AI/ML Basics</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-level" data-width="70%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <i class="fas fa-eye"></i>
+                                <span>OpenCV</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-level" data-width="75%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <i class="fab fa-docker"></i>
+                                <span>Docker</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-level" data-width="65%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>My Development Philosophy</h2>
+                <p>Core values that guide my approach to every project</p>
+            </div>
+            
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Precision Focus</h3>
+                    <p>Every line of code matters. I focus on writing clean, efficient, and well-documented code that performs optimally and is easy to maintain.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>User-Centered</h3>
+                    <p>Technology should serve people. I prioritize user experience and practical utility in every solution I build, ensuring real-world impact.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3>Continuous Learning</h3>
+                    <p>The tech landscape evolves rapidly. I dedicate time daily to learning new technologies, frameworks, and best practices to stay current.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Collaborative Spirit</h3>
+                    <p>Great products are built through teamwork. I value clear communication, feedback, and collaborative problem-solving with clients and teams.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Let's Build Something Amazing</h2>
+                <p>Have a project idea or need a developer? I'm always excited to discuss new opportunities and collaborate on innovative solutions.</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Start a Conversation
+                    </a>
+                    <a href="projects.html" class="btn btn-secondary">
+                        <i class="fas fa-code"></i> View My Work
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3><i class="fas fa-user"></i> Lalit Pant</h3>
+                    <p>Backend Developer & WordPress Specialist crafting digital solutions with precision and innovation. Passionate about building technology that makes a difference.</p>
+                    <div class="social-links">
+                        <a href="https://github.com/lalitpanta" target="_blank" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="mailto:pantlaalit@gmail.com" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/lalit-pant" target="_blank" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://twitter.com/lalitpant" target="_blank" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3><i class="fas fa-link"></i> Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About</a></li>
+                        <li><a href="projects.html"><i class="fas fa-chevron-right"></i> Projects</a></li>
+                        <li><a href="skills.html"><i class="fas fa-chevron-right"></i> Skills</a></li>
+                        <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3><i class="fas fa-map-marker-alt"></i> Location</h3>
+                    <p><i class="fas fa-graduation-cap"></i> Final Year Computer Engineering Student</p>
+                    <p><i class="fas fa-university"></i> Pokhara University, Nepal</p>
+                    <p><i class="fas fa-globe"></i> Available for remote work worldwide</p>
+                    <p><i class="fas fa-clock"></i> Timezone: GMT+5:45</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Lalit Pant. All rights reserved. | Crafted with <i class="fas fa-heart" style="color: #ef4444;"></i> and <i class="fas fa-code"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Navigation
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        const navbar = document.querySelector('.navbar');
+        const body = document.body;
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.querySelector('i').classList.toggle('fa-bars');
+            hamburger.querySelector('i').classList.toggle('fa-times');
+            body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.querySelector('i').classList.remove('fa-times');
+                hamburger.querySelector('i').classList.add('fa-bars');
+                body.style.overflow = '';
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Animate skill bars on scroll
+        const animateSkillBars = () => {
+            const skillBars = document.querySelectorAll('.skill-level');
+            
+            skillBars.forEach(bar => {
+                const rect = bar.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                if (rect.top <= windowHeight * 0.8 && rect.bottom >= 0) {
+                    const width = bar.getAttribute('data-width');
+                    bar.style.width = width;
+                }
+            });
+        };
+
+        // Initialize skill bars
+        window.addEventListener('load', animateSkillBars);
+        window.addEventListener('scroll', animateSkillBars);
+        window.addEventListener('resize', animateSkillBars);
+
+        // Animate timeline items
+        const timelineObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { 
+            threshold: 0.2,
+            rootMargin: '50px'
+        });
+
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            timelineObserver.observe(item);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    const navbarHeight = navbar.offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    
+                    window.scrollTo({
+                        top: targetPosition - navbarHeight,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        hamburger.querySelector('i').classList.remove('fa-times');
+                        hamburger.querySelector('i').classList.add('fa-bars');
+                        body.style.overflow = '';
+                    }
+                }
+            });
+        });
+
+        // GitHub Pages path fixing
+        document.addEventListener('DOMContentLoaded', function() {
+            const isGitHubPages = window.location.hostname.includes('github.io');
+            
+            if (isGitHubPages) {
+                // Fix image paths
+                document.querySelectorAll('img').forEach(img => {
+                    let src = img.getAttribute('src');
+                    if (src && !src.startsWith('http') && !src.startsWith('data:')) {
+                        const repoName = window.location.pathname.split('/')[1];
+                        if (repoName && !src.includes(repoName)) {
+                            img.src = '/' + repoName + src;
+                        }
+                    }
+                });
+                
+                // Fix link paths
+                document.querySelectorAll('a').forEach(link => {
+                    let href = link.getAttribute('href');
+                    if (href && !href.startsWith('#') && !href.startsWith('http') && !href.startsWith('mailto:')) {
+                        const repoName = window.location.pathname.split('/')[1];
+                        if (repoName && !href.includes(repoName)) {
+                            link.href = '/' + repoName + '/' + href.replace(/^\//, '');
+                        }
+                    }
+                });
+            }
+        });
+
+        // Add loading animation for page elements
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+            
+            // Trigger skill bar animation on load
+            setTimeout(animateSkillBars, 500);
+        });
+
+        // Handle window resize
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                // Recalculate skill bars on resize
+                animateSkillBars();
+            }, 250);
+        });
+
+        // Touch event support for mobile
+        document.addEventListener('touchstart', function() {}, {passive: true});
+    </script>
+</body>
+</html>
