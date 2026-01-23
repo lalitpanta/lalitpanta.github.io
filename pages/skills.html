@@ -680,6 +680,112 @@
             }
         }
 
+        /* Footer - EXACTLY MATCHING ABOUT.HTML */
+        footer {
+            background: #020617;
+            color: white;
+            padding: 80px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        @media (min-width: 768px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .footer-content {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .footer-col h3 {
+            color: white;
+            font-size: 1.25rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-col h3 i {
+            color: var(--primary);
+        }
+
+        .footer-col p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer-links a i {
+            color: var(--primary);
+            font-size: 0.8rem;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -840,27 +946,52 @@
         </div>
     </section>
 
-
-    <!-- Footer -->
+    <!-- Footer - EXACTLY MATCHING ABOUT.HTML -->
     <footer>
         <div class="container">
-            <p>Lalit Pant - Full Stack Developer & Backend Specialist</p>
-            <div class="social-links">
-                <a href="https://github.com/lalitpanta" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                <a href="mailto:pantlaalit@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                <a href="https://linkedin.com/in/lalit-pant" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="https://twitter.com/lalitpant" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3><i class="fas fa-user"></i> Lalit Pant</h3>
+                    <p>Backend Developer & WordPress Specialist crafting digital solutions with precision and innovation. Passionate about building technology that makes a difference.</p>
+                    <div class="social-links">
+                        <a href="https://github.com/lalitpanta" target="_blank" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="mailto:pantlaalit@gmail.com" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/lalit-pant" target="_blank" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://twitter.com/lalitpant" target="_blank" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3><i class="fas fa-link"></i> Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="../index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About</a></li>
+                        <li><a href="projects.html"><i class="fas fa-chevron-right"></i> Projects</a></li>
+                        <li><a href="skills.html"><i class="fas fa-chevron-right"></i> Skills</a></li>
+                        <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3><i class="fas fa-map-marker-alt"></i> Location</h3>
+                    <p><i class="fas fa-graduation-cap"></i> Final Year Computer Engineering Student</p>
+                    <p><i class="fas fa-university"></i> Pokhara University, Nepal</p>
+                    <p><i class="fas fa-globe"></i> Available for remote work worldwide</p>
+                    <p><i class="fas fa-clock"></i> Timezone: GMT+5:45</p>
+                </div>
             </div>
-            <div class="footer-links">
-                <a href="../index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="projects.html">Projects</a>
-                <a href="skills.html">Skills</a>
-                <a href="gallery.html">Gallery</a>
-                <a href="contact.html">Contact</a>
-            </div>
+            
             <div class="copyright">
-                &copy; 2023 Lalit Pant. All rights reserved. | Built with passion and precision
+                <p>&copy; 2023 Lalit Pant. All rights reserved. | Crafted with <i class="fas fa-heart" style="color: #ef4444;"></i> and <i class="fas fa-code"></i></p>
             </div>
         </div>
     </footer>

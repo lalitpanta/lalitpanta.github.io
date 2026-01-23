@@ -875,91 +875,110 @@
             transform: translateY(-5px) scale(1.05);
         }
 
-        /* Footer */
+        /* Footer - EXACTLY MATCHING ABOUT.HTML */
         footer {
-            background-color: var(--dark);
+            background: #020617;
             color: white;
             padding: 80px 0 30px;
-            position: relative;
         }
 
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
         }
 
-        footer .container {
+        @media (min-width: 768px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .footer-content {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .footer-col h3 {
+            color: white;
+            font-size: 1.25rem;
+            margin-bottom: 20px;
             display: flex;
-            flex-direction: column;
             align-items: center;
+            gap: 10px;
         }
 
-        footer p {
-            margin-bottom: 2.5rem;
-            opacity: 0.9;
-            font-size: 1.2rem;
-            text-align: center;
-            max-width: 600px;
+        .footer-col h3 i {
+            color: var(--primary);
+        }
+
+        .footer-col p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+            font-size: 1rem;
         }
 
         .social-links {
             display: flex;
-            gap: 20px;
-            margin-bottom: 2.5rem;
+            gap: 15px;
+            margin-top: 20px;
         }
 
         .social-links a {
-            display: inline-flex;
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
             align-items: center;
             justify-content: center;
-            width: 55px;
-            height: 55px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
             color: white;
-            font-size: 1.3rem;
+            text-decoration: none;
             transition: var(--transition);
+            font-size: 1.2rem;
         }
 
         .social-links a:hover {
-            background-color: var(--primary);
-            transform: translateY(-5px) scale(1.1);
+            background: var(--primary);
+            transform: translateY(-3px);
         }
 
         .footer-links {
-            display: flex;
-            gap: 35px;
-            margin-bottom: 2.5rem;
-            flex-wrap: wrap;
-            justify-content: center;
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
         }
 
         .footer-links a {
-            color: white;
+            color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
-            opacity: 0.8;
             transition: var(--transition);
-            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
         }
 
         .footer-links a:hover {
-            opacity: 1;
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer-links a i {
             color: var(--primary);
+            font-size: 0.8rem;
         }
 
         .copyright {
-            opacity: 0.6;
-            font-size: 0.95rem;
             text-align: center;
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
+            padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            width: 100%;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
         }
 
         /* Animations */
@@ -1173,14 +1192,20 @@
                 align-self: flex-end;
             }
 
-            .footer-links {
-                gap: 20px;
+            .footer-content {
+                grid-template-columns: 1fr;
             }
 
-            .social-links a {
-                width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
+            .footer-col {
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .footer-links a {
+                justify-content: center;
             }
         }
 
@@ -1445,26 +1470,52 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer - EXACTLY MATCHING ABOUT.HTML -->
     <footer>
         <div class="container">
-            <p>Lalit Pant - Full Stack Developer & Backend Specialist</p>
-            <div class="social-links">
-                <a href="https://github.com/lalitpanta" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                <a href="mailto:pantlaalit@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                <a href="https://linkedin.com/in/lalit-pant" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="https://twitter.com/lalitpant" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3><i class="fas fa-user"></i> Lalit Pant</h3>
+                    <p>Backend Developer & WordPress Specialist crafting digital solutions with precision and innovation. Passionate about building technology that makes a difference.</p>
+                    <div class="social-links">
+                        <a href="https://github.com/lalitpanta" target="_blank" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="mailto:pantlaalit@gmail.com" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/lalit-pant" target="_blank" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://twitter.com/lalitpant" target="_blank" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3><i class="fas fa-link"></i> Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="../index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About</a></li>
+                        <li><a href="projects.html"><i class="fas fa-chevron-right"></i> Projects</a></li>
+                        <li><a href="skills.html"><i class="fas fa-chevron-right"></i> Skills</a></li>
+                        <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3><i class="fas fa-map-marker-alt"></i> Location</h3>
+                    <p><i class="fas fa-graduation-cap"></i> Final Year Computer Engineering Student</p>
+                    <p><i class="fas fa-university"></i> Pokhara University, Nepal</p>
+                    <p><i class="fas fa-globe"></i> Available for remote work worldwide</p>
+                    <p><i class="fas fa-clock"></i> Timezone: GMT+5:45</p>
+                </div>
             </div>
-            <div class="footer-links">
-                <a href="../index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="projects.html">Projects</a>
-                <a href="skills.html">Skills</a>
-                <a href="gallery.html">Gallery</a>
-                <a href="contact.html">Contact</a>
-            </div>
+            
             <div class="copyright">
-                &copy; 2023 Lalit Pant. All rights reserved. | Built with passion and precision
+                <p>&copy; 2023 Lalit Pant. All rights reserved. | Crafted with <i class="fas fa-heart" style="color: #ef4444;"></i> and <i class="fas fa-code"></i></p>
             </div>
         </div>
     </footer>
@@ -1580,8 +1631,6 @@
                 features: ["Donor Management", "Inventory Tracking", "Request System", "Reporting", "Notifications"]
             },
             {
-
-
                 id: 5,
                 title: "Irish-industrial-floo-company",
                 description: "The Irish Industrial Flooring project is a custom WordPress website developed for the Irish Industrial Flooring company. The website is designed to provide a fully responsive, user-friendly, and visually appealing interface",
@@ -1593,63 +1642,58 @@
                 github: "https://github.com/lalitpanta/wordpress-ecommerce",
                 demo: "https://demo.ecommerce-store.com",
                 features: ["Custom Theme", "blog section", "Product Management","gallery section","services section", "SEO Optimized"]
-
-
-
-
             },
             {
                 id: 6,
-    title: "Dental Clinic Website",
-    description: "A professional WordPress website for a dental clinic with appointment booking, service showcases, patient testimonials, and a secure patient portal for medical history and treatment plans.",
-    category: "wordpress",
-    image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    technologies: ["WordPress", "PHP", "Advanced Custom Fields", "JavaScript", "MySQL", "Elementor Pro", "WooCommerce (for products)"],
-    year: "2026",
-    status: "Completed",
-    github: "https://github.com/username/dental-clinic-website",
-    demo: "https://demo.dentalclinic.com",
-    features: ["Custom Dental Theme", "Appointment Booking System", "Service Showcases", "Patient Testimonials", "Before/After Gallery", "Patient Portal", "Blog Section", "SEO Optimized"]
-
+                title: "Dental Clinic Website",
+                description: "A professional WordPress website for a dental clinic with appointment booking, service showcases, patient testimonials, and a secure patient portal for medical history and treatment plans.",
+                category: "wordpress",
+                image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                technologies: ["WordPress", "PHP", "Advanced Custom Fields", "JavaScript", "MySQL", "Elementor Pro", "WooCommerce (for products)"],
+                year: "2026",
+                status: "Completed",
+                github: "https://github.com/username/dental-clinic-website",
+                demo: "https://demo.dentalclinic.com",
+                features: ["Custom Dental Theme", "Appointment Booking System", "Service Showcases", "Patient Testimonials", "Before/After Gallery", "Patient Portal", "Blog Section", "SEO Optimized"]
             },
             {
-               id: 7,
-    title: "Luxury Hotel & Resort Website",
-    description: "A premium WordPress website for a luxury hotel featuring room booking system, gallery showcases, amenities display, event management, and integrated restaurant reservation system.",
-    category: "wordpress",
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    technologies: ["WordPress", "PHP", "Advanced Custom Fields", "JavaScript", "MySQL", "Booking Plugin", "Elementor Pro"],
-    year: "2026",
-    status: "Completed",
-    github: "https://github.com/username/hotel-resort-website",
-    demo: "https://demo.luxuryhotel.com",
-    features: ["Custom Hotel Theme", "Room Booking System", "Interactive Gallery", "Amenities Showcase", "Event Calendar", "Restaurant Menu & Reservations", "Guest Reviews", "SEO Optimized"]
+                id: 7,
+                title: "Luxury Hotel & Resort Website",
+                description: "A premium WordPress website for a luxury hotel featuring room booking system, gallery showcases, amenities display, event management, and integrated restaurant reservation system.",
+                category: "wordpress",
+                image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                technologies: ["WordPress", "PHP", "Advanced Custom Fields", "JavaScript", "MySQL", "Booking Plugin", "Elementor Pro"],
+                year: "2026",
+                status: "Completed",
+                github: "https://github.com/username/hotel-resort-website",
+                demo: "https://demo.luxuryhotel.com",
+                features: ["Custom Hotel Theme", "Room Booking System", "Interactive Gallery", "Amenities Showcase", "Event Calendar", "Restaurant Menu & Reservations", "Guest Reviews", "SEO Optimized"]
             },
             {
                 id: 8,
-    title: "Smart Holidays Trekking Website",
-    description: "A dynamic WordPress website for an adventure travel company specializing in smart trekking holidays, featuring interactive tour packages, booking system, gear recommendations, and adventure blogs.",
-    category: "wordpress",
-    image: "https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    technologies: ["WordPress", "PHP", "Advanced Custom Fields", "JavaScript", "MySQL", "Booking Plugin", "Elementor Pro", "WooCommerce"],
-    year: "2026",
-    status: "Completed",
-    github: "https://github.com/username/smart-trekking-holidays",
-    demo: "https://demo.smarttrekkingholidays.com",
-    features: ["Custom Adventure Theme", "Tour Package Management", "Interactive Booking System", "Gear & Equipment Shop", "Trip Difficulty Calculator", "Travel Blog", "Gallery & Reviews", "SEO Optimized"]
+                title: "Smart Holidays Trekking Website",
+                description: "A dynamic WordPress website for an adventure travel company specializing in smart trekking holidays, featuring interactive tour packages, booking system, gear recommendations, and adventure blogs.",
+                category: "wordpress",
+                image: "https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                technologies: ["WordPress", "PHP", "Advanced Custom Fields", "JavaScript", "MySQL", "Booking Plugin", "Elementor Pro", "WooCommerce"],
+                year: "2026",
+                status: "Completed",
+                github: "https://github.com/username/smart-trekking-holidays",
+                demo: "https://demo.smarttrekkingholidays.com",
+                features: ["Custom Adventure Theme", "Tour Package Management", "Interactive Booking System", "Gear & Equipment Shop", "Trip Difficulty Calculator", "Travel Blog", "Gallery & Reviews", "SEO Optimized"]
             },
             {
                 id: 9,
-    title: "Benchmark Training & Associates Portal",
-    description: "A real-time corporate training and associate management platform featuring live session scheduling, progress tracking, resource library, certificate management, and interactive learning modules.",
-    category: "web",
-    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    technologies: ["HTML5", "CSS3", "JavaScript", "Node.js", "Express.js", "MySQL", "Socket.io", "Chart.js"],
-    year: "2026",
-    status: "Completed",
-    github: "https://github.com/username/benchmark-training-portal",
-    demo: "https://demo.benchmarktraining.com",
-    features: ["Real-time Dashboard", "Live Training Sessions", "Progress Analytics", "Resource Library", "Certificate Generator", "Associate Management", "Interactive Quizzes", "Admin Panel"]
+                title: "Benchmark Training & Associates Portal",
+                description: "A real-time corporate training and associate management platform featuring live session scheduling, progress tracking, resource library, certificate management, and interactive learning modules.",
+                category: "web",
+                image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                technologies: ["HTML5", "CSS3", "JavaScript", "Node.js", "Express.js", "MySQL", "Socket.io", "Chart.js"],
+                year: "2026",
+                status: "Completed",
+                github: "https://github.com/username/benchmark-training-portal",
+                demo: "https://demo.benchmarktraining.com",
+                features: ["Real-time Dashboard", "Live Training Sessions", "Progress Analytics", "Resource Library", "Certificate Generator", "Associate Management", "Interactive Quizzes", "Admin Panel"]
             }
         ];
 
