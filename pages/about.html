@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
     
     <style>
         /* Base Styles - Mobile First */
@@ -238,7 +238,7 @@
             font-size: clamp(1rem, 2vw, 1.1rem);
         }
 
-        /* Navigation - UPDATED FOR GITHUB PAGES */
+        /* Navigation - FIXED */
         .navbar {
             position: fixed;
             top: 0;
@@ -1240,17 +1240,17 @@
     </style>
 </head>
 <body>
-    <!-- Navigation - UPDATED FOR GITHUB PAGES -->
+    <!-- Navigation - FIXED -->
     <nav class="navbar">
         <div class="container">
-            <a href="index.html" class="logo">Lalit<span>Pant</span></a>
+            <a href="/" class="logo">Lalit<span>Pant</span></a>
             <ul class="nav-links">
-                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="pages/about.html" class="active"><i class="fas fa-user"></i> About</a></li>
-                <li><a href="pages/projects.html"><i class="fas fa-code"></i> Projects</a></li>
-                <li><a href="pages/skills.html"><i class="fas fa-cogs"></i> Skills</a></li>
-                <li><a href="pages/gallery.html"><i class="fas fa-images"></i> Gallery</a></li>
-                <li><a href="pages/contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="/pages/about.html" class="active"><i class="fas fa-user"></i> About</a></li>
+                <li><a href="/pages/projects.html"><i class="fas fa-code"></i> Projects</a></li>
+                <li><a href="/pages/skills.html"><i class="fas fa-cogs"></i> Skills</a></li>
+                <li><a href="/pages/gallery.html"><i class="fas fa-images"></i> Gallery</a></li>
+                <li><a href="/pages/contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
             </ul>
             <button class="hamburger" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
@@ -1272,7 +1272,7 @@
                     <a href="#journey" class="btn btn-primary">
                         <i class="fas fa-road"></i> View My Journey
                     </a>
-                    <a href="pages/projects.html" class="btn btn-secondary">
+                    <a href="/pages/projects.html" class="btn btn-secondary">
                         <i class="fas fa-code"></i> See My Work
                     </a>
                 </div>
@@ -1584,10 +1584,10 @@
                 <h2>Let's Build Something Amazing</h2>
                 <p>Have a project idea or need a developer? I'm always excited to discuss new opportunities and collaborate on innovative solutions.</p>
                 <div class="cta-buttons">
-                    <a href="pages/contact.html" class="btn btn-primary">
+                    <a href="/pages/contact.html" class="btn btn-primary">
                         <i class="fas fa-paper-plane"></i> Start a Conversation
                     </a>
-                    <a href="pages/projects.html" class="btn btn-secondary">
+                    <a href="/pages/projects.html" class="btn btn-secondary">
                         <i class="fas fa-code"></i> View My Work
                     </a>
                 </div>
@@ -1621,12 +1621,12 @@
                 <div class="footer-col">
                     <h3><i class="fas fa-link"></i> Quick Links</h3>
                     <ul class="footer-links">
-                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
-                        <li><a href="pages/about.html"><i class="fas fa-chevron-right"></i> About</a></li>
-                        <li><a href="pages/projects.html"><i class="fas fa-chevron-right"></i> Projects</a></li>
-                        <li><a href="pages/skills.html"><i class="fas fa-chevron-right"></i> Skills</a></li>
-                        <li><a href="pages/gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
-                        <li><a href="pages/contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                        <li><a href="/"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="/pages/about.html"><i class="fas fa-chevron-right"></i> About</a></li>
+                        <li><a href="/pages/projects.html"><i class="fas fa-chevron-right"></i> Projects</a></li>
+                        <li><a href="/pages/skills.html"><i class="fas fa-chevron-right"></i> Skills</a></li>
+                        <li><a href="/pages/gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+                        <li><a href="/pages/contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
                     </ul>
                 </div>
                 
@@ -1759,32 +1759,60 @@
 
         // GitHub Pages path fixing
         document.addEventListener('DOMContentLoaded', function() {
-            // Detect if we're on GitHub Pages
             const isGitHubPages = window.location.hostname.includes('github.io');
             
             if (isGitHubPages) {
-                // Fix all relative paths
-                document.querySelectorAll('a').forEach(link => {
-                    const href = link.getAttribute('href');
-                    
-                    // Only fix relative links (not starting with http, https, #, or mailto:)
-                    if (href && !href.startsWith('http') && !href.startsWith('#') && !href.startsWith('mailto:')) {
-                        // If we're in a subdirectory (like pages/about.html), we need to adjust paths
-                        const currentPath = window.location.pathname;
+                // Get repository name from URL
+                const pathSegments = window.location.pathname.split('/').filter(segment => segment);
+                const repoName = pathSegments[0] || '';
+                
+                // Only fix paths if we're in a GitHub Pages repository
+                if (repoName && repoName !== 'lalitpanta.github.io') {
+                    // Function to fix paths
+                    const fixPath = (path) => {
+                        if (!path || path.startsWith('#') || path.startsWith('http') || path.startsWith('mailto:')) {
+                            return path;
+                        }
                         
-                        // Check if we're in a subdirectory
-                        if (currentPath.includes('/pages/')) {
-                            // For navigation from subdirectories to home
-                            if (href === 'index.html') {
-                                link.href = '../index.html';
-                            }
-                            // For navigation from subdirectories to other pages
-                            else if (href.startsWith('pages/')) {
-                                link.href = '../' + href;
+                        // If path already starts with repo name, leave it
+                        if (repoName && path.includes(repoName)) {
+                            return path;
+                        }
+                        
+                        // Ensure path starts with slash
+                        const cleanPath = path.startsWith('/') ? path : '/' + path;
+                        
+                        // For root path (home)
+                        if (cleanPath === '/' || cleanPath === '/index.html') {
+                            return '/' + repoName + '/';
+                        }
+                        
+                        // For other pages
+                        return '/' + repoName + cleanPath;
+                    };
+                    
+                    // Fix all links
+                    document.querySelectorAll('a').forEach(link => {
+                        const href = link.getAttribute('href');
+                        if (href) {
+                            const fixedHref = fixPath(href);
+                            if (fixedHref !== href) {
+                                link.setAttribute('href', fixedHref);
                             }
                         }
-                    }
-                });
+                    });
+                    
+                    // Fix image paths
+                    document.querySelectorAll('img').forEach(img => {
+                        let src = img.getAttribute('src');
+                        if (src && !src.startsWith('http') && !src.startsWith('data:')) {
+                            const fixedSrc = fixPath(src);
+                            if (fixedSrc !== src) {
+                                img.src = fixedSrc;
+                            }
+                        }
+                    });
+                }
             }
         });
 
