@@ -1646,6 +1646,7 @@
     </footer>
 
     <!-- JavaScript -->
+        <!-- JavaScript -->
     <script>
         // Mobile Navigation
         const hamburger = document.querySelector('.hamburger');
@@ -1757,62 +1758,60 @@
             });
         });
 
-        // GitHub Pages path fixing
+        // Fixed GitHub Pages navigation handler
         document.addEventListener('DOMContentLoaded', function() {
+            // Get the current page URL
+            const currentPath = window.location.pathname;
             const isGitHubPages = window.location.hostname.includes('github.io');
             
             if (isGitHubPages) {
-                // Get repository name from URL
-                const pathSegments = window.location.pathname.split('/').filter(segment => segment);
-                const repoName = pathSegments[0] || '';
+                // Handle navigation links
+                document.querySelectorAll('a').forEach(link => {
+                    const href = link.getAttribute('href');
+                    
+                    // Skip external links, mailto, anchors
+                    if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto:')) {
+                        return;
+                    }
+                    
+                    // Handle the home link differently based on current page
+                    if (href === '/' || href === '/index.html') {
+                        if (currentPath === '/' || currentPath === '/index.html' || currentPath === '/pages/') {
+                            // Already on home page
+                            link.setAttribute('href', '/');
+                        } else if (currentPath.includes('/pages/')) {
+                            // Currently in /pages/ directory, go back to root
+                            link.setAttribute('href', '/');
+                        }
+                    }
+                    
+                    // Handle relative links from pages directory
+                    else if (href.startsWith('/pages/') && currentPath.includes('/pages/')) {
+                        // Already in pages directory, link is correct
+                    }
+                    else if (href.startsWith('/pages/') && !currentPath.includes('/pages/')) {
+                        // From root to pages - link is correct
+                    }
+                });
                 
-                // Only fix paths if we're in a GitHub Pages repository
-                if (repoName && repoName !== 'lalitpanta.github.io') {
-                    // Function to fix paths
-                    const fixPath = (path) => {
-                        if (!path || path.startsWith('#') || path.startsWith('http') || path.startsWith('mailto:')) {
-                            return path;
-                        }
-                        
-                        // If path already starts with repo name, leave it
-                        if (repoName && path.includes(repoName)) {
-                            return path;
-                        }
-                        
-                        // Ensure path starts with slash
-                        const cleanPath = path.startsWith('/') ? path : '/' + path;
-                        
-                        // For root path (home)
-                        if (cleanPath === '/' || cleanPath === '/index.html') {
-                            return '/' + repoName + '/';
-                        }
-                        
-                        // For other pages
-                        return '/' + repoName + cleanPath;
-                    };
+                // Fix current page highlighting
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    const href = link.getAttribute('href');
                     
-                    // Fix all links
-                    document.querySelectorAll('a').forEach(link => {
-                        const href = link.getAttribute('href');
-                        if (href) {
-                            const fixedHref = fixPath(href);
-                            if (fixedHref !== href) {
-                                link.setAttribute('href', fixedHref);
-                            }
-                        }
-                    });
+                    // Remove active class from all
+                    link.classList.remove('active');
                     
-                    // Fix image paths
-                    document.querySelectorAll('img').forEach(img => {
-                        let src = img.getAttribute('src');
-                        if (src && !src.startsWith('http') && !src.startsWith('data:')) {
-                            const fixedSrc = fixPath(src);
-                            if (fixedSrc !== src) {
-                                img.src = fixedSrc;
-                            }
+                    // Check if this is the current page
+                    if (href === '/' || href === '/index.html') {
+                        // Home page
+                        if (currentPath === '/' || currentPath === '/index.html') {
+                            link.classList.add('active');
                         }
-                    });
-                }
+                    } else if (currentPath.includes(href.replace('.html', ''))) {
+                        // Other pages (remove .html for matching)
+                        link.classList.add('active');
+                    }
+                });
             }
         });
 
