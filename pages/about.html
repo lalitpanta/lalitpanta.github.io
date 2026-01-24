@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
     
     <style>
         /* Base Styles - Mobile First */
@@ -238,7 +238,7 @@
             font-size: clamp(1rem, 2vw, 1.1rem);
         }
 
-        /* Navigation - FROM SECOND CODE */
+        /* Navigation - FIXED */
         .navbar {
             position: fixed;
             top: 0;
@@ -328,6 +328,14 @@
         }
 
         .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .nav-links a.active::after {
             width: 100%;
         }
 
@@ -1232,24 +1240,23 @@
     </style>
 </head>
 <body>
-    <!-- Navigation - FROM SECOND CODE -->
-   <!-- Navigation - FIXED VERSION -->
-<nav class="navbar">
-    <div class="container">
-        <a href="/" class="logo">Lalit<span>Pant</span></a>
-        <ul class="nav-links">
-            <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="/pages/about.html" class="active"><i class="fas fa-user"></i> About</a></li>
-            <li><a href="/pages/projects.html"><i class="fas fa-code"></i> Projects</a></li>
-            <li><a href="/pages/skills.html"><i class="fas fa-cogs"></i> Skills</a></li>
-            <li><a href="/pages/gallery.html"><i class="fas fa-images"></i> Gallery</a></li>
-            <li><a href="/pages/contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
-        </ul>
-        <button class="hamburger" aria-label="Toggle navigation">
-            <i class="fas fa-bars"></i>
-        </button>
-    </div>
-</nav>
+    <!-- Navigation - FIXED -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo">Lalit<span>Pant</span></a>
+            <ul class="nav-links">
+                <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="/pages/about.html" class="active"><i class="fas fa-user"></i> About</a></li>
+                <li><a href="/pages/projects.html"><i class="fas fa-code"></i> Projects</a></li>
+                <li><a href="/pages/skills.html"><i class="fas fa-cogs"></i> Skills</a></li>
+                <li><a href="/pages/gallery.html"><i class="fas fa-images"></i> Gallery</a></li>
+                <li><a href="/pages/contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+            <button class="hamburger" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -1265,7 +1272,7 @@
                     <a href="#journey" class="btn btn-primary">
                         <i class="fas fa-road"></i> View My Journey
                     </a>
-                    <a href="projects.html" class="btn btn-secondary">
+                    <a href="/pages/projects.html" class="btn btn-secondary">
                         <i class="fas fa-code"></i> See My Work
                     </a>
                 </div>
@@ -1577,10 +1584,10 @@
                 <h2>Let's Build Something Amazing</h2>
                 <p>Have a project idea or need a developer? I'm always excited to discuss new opportunities and collaborate on innovative solutions.</p>
                 <div class="cta-buttons">
-                    <a href="contact.html" class="btn btn-primary">
+                    <a href="/pages/contact.html" class="btn btn-primary">
                         <i class="fas fa-paper-plane"></i> Start a Conversation
                     </a>
-                    <a href="projects.html" class="btn btn-secondary">
+                    <a href="/pages/projects.html" class="btn btn-secondary">
                         <i class="fas fa-code"></i> View My Work
                     </a>
                 </div>
@@ -1614,12 +1621,12 @@
                 <div class="footer-col">
                     <h3><i class="fas fa-link"></i> Quick Links</h3>
                     <ul class="footer-links">
-                        <li><a href="../../index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
-                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About</a></li>
-                        <li><a href="projects.html"><i class="fas fa-chevron-right"></i> Projects</a></li>
-                        <li><a href="skills.html"><i class="fas fa-chevron-right"></i> Skills</a></li>
-                        <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
-                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                        <li><a href="/"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="/pages/about.html"><i class="fas fa-chevron-right"></i> About</a></li>
+                        <li><a href="/pages/projects.html"><i class="fas fa-chevron-right"></i> Projects</a></li>
+                        <li><a href="/pages/skills.html"><i class="fas fa-chevron-right"></i> Skills</a></li>
+                        <li><a href="/pages/gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+                        <li><a href="/pages/contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
                     </ul>
                 </div>
                 
@@ -1640,7 +1647,7 @@
 
     <!-- JavaScript -->
     <script>
-        // Mobile Navigation - FROM SECOND CODE
+        // Mobile Navigation
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
         const navbar = document.querySelector('.navbar');
@@ -1650,6 +1657,7 @@
             navLinks.classList.toggle('active');
             hamburger.querySelector('i').classList.toggle('fa-bars');
             hamburger.querySelector('i').classList.toggle('fa-times');
+            body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
         });
 
         // Close mobile menu when clicking outside
@@ -1672,7 +1680,7 @@
         });
 
         // Close mobile menu when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
+        document.querySelectorAll('.nav-links a, .footer-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
                 hamburger.querySelector('i').classList.remove('fa-times');
@@ -1754,27 +1762,57 @@
             const isGitHubPages = window.location.hostname.includes('github.io');
             
             if (isGitHubPages) {
-                // Fix image paths
-                document.querySelectorAll('img').forEach(img => {
-                    let src = img.getAttribute('src');
-                    if (src && !src.startsWith('http') && !src.startsWith('data:')) {
-                        const repoName = window.location.pathname.split('/')[1];
-                        if (repoName && !src.includes(repoName)) {
-                            img.src = '/' + repoName + src;
-                        }
-                    }
-                });
+                // Get repository name from URL
+                const pathSegments = window.location.pathname.split('/').filter(segment => segment);
+                const repoName = pathSegments[0] || '';
                 
-                // Fix link paths
-                document.querySelectorAll('a').forEach(link => {
-                    let href = link.getAttribute('href');
-                    if (href && !href.startsWith('#') && !href.startsWith('http') && !href.startsWith('mailto:')) {
-                        const repoName = window.location.pathname.split('/')[1];
-                        if (repoName && !href.includes(repoName)) {
-                            link.href = '/' + repoName + '/' + href.replace(/^\//, '');
+                // Only fix paths if we're in a GitHub Pages repository
+                if (repoName && repoName !== 'lalitpanta.github.io') {
+                    // Function to fix paths
+                    const fixPath = (path) => {
+                        if (!path || path.startsWith('#') || path.startsWith('http') || path.startsWith('mailto:')) {
+                            return path;
                         }
-                    }
-                });
+                        
+                        // If path already starts with repo name, leave it
+                        if (repoName && path.includes(repoName)) {
+                            return path;
+                        }
+                        
+                        // Ensure path starts with slash
+                        const cleanPath = path.startsWith('/') ? path : '/' + path;
+                        
+                        // For root path (home)
+                        if (cleanPath === '/' || cleanPath === '/index.html') {
+                            return '/' + repoName + '/';
+                        }
+                        
+                        // For other pages
+                        return '/' + repoName + cleanPath;
+                    };
+                    
+                    // Fix all links
+                    document.querySelectorAll('a').forEach(link => {
+                        const href = link.getAttribute('href');
+                        if (href) {
+                            const fixedHref = fixPath(href);
+                            if (fixedHref !== href) {
+                                link.setAttribute('href', fixedHref);
+                            }
+                        }
+                    });
+                    
+                    // Fix image paths
+                    document.querySelectorAll('img').forEach(img => {
+                        let src = img.getAttribute('src');
+                        if (src && !src.startsWith('http') && !src.startsWith('data:')) {
+                            const fixedSrc = fixPath(src);
+                            if (fixedSrc !== src) {
+                                img.src = fixedSrc;
+                            }
+                        }
+                    });
+                }
             }
         });
 
@@ -1807,6 +1845,7 @@
                 navLinks.classList.remove('active');
                 hamburger.querySelector('i').classList.remove('fa-times');
                 hamburger.querySelector('i').classList.add('fa-bars');
+                body.style.overflow = '';
             }
         });
 
