@@ -1245,13 +1245,13 @@
         <div class="container">
             <a href="/" class="logo">Lalit<span>Pant</span></a>
             <ul class="nav-links">
-                <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="/pages/about.html" class="active"><i class="fas fa-user"></i> About</a></li>
-                <li><a href="/pages/projects.html"><i class="fas fa-code"></i> Projects</a></li>
-                <li><a href="/pages/skills.html"><i class="fas fa-cogs"></i> Skills</a></li>
-                <li><a href="/pages/gallery.html"><i class="fas fa-images"></i> Gallery</a></li>
-                <li><a href="/pages/contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
-            </ul>
+    <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+    <li><a href="/pages/about.html" class="active"><i class="fas fa-user"></i> About</a></li>
+    <li><a href="/pages/projects.html"><i class="fas fa-code"></i> Projects</a></li>
+    <li><a href="/pages/skills.html"><i class="fas fa-cogs"></i> Skills</a></li>
+    <li><a href="/pages/gallery.html"><i class="fas fa-images"></i> Gallery</a></li>
+    <li><a href="/pages/contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+</ul>
             <button class="hamburger" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
@@ -1620,14 +1620,14 @@
                 
                 <div class="footer-col">
                     <h3><i class="fas fa-link"></i> Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="/"><i class="fas fa-chevron-right"></i> Home</a></li>
-                        <li><a href="/pages/about.html"><i class="fas fa-chevron-right"></i> About</a></li>
-                        <li><a href="/pages/projects.html"><i class="fas fa-chevron-right"></i> Projects</a></li>
-                        <li><a href="/pages/skills.html"><i class="fas fa-chevron-right"></i> Skills</a></li>
-                        <li><a href="/pages/gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
-                        <li><a href="/pages/contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
-                    </ul>
+                   <ul class="footer-links">
+    <li><a href="/"><i class="fas fa-chevron-right"></i> Home</a></li>
+    <li><a href="/pages/about.html"><i class="fas fa-chevron-right"></i> About</a></li>
+    <li><a href="/pages/projects.html"><i class="fas fa-chevron-right"></i> Projects</a></li>
+    <li><a href="/pages/skills.html"><i class="fas fa-chevron-right"></i> Skills</a></li>
+    <li><a href="/pages/gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+    <li><a href="/pages/contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+</ul>
                 </div>
                 
                 <div class="footer-col">
@@ -1756,63 +1756,6 @@
                     }
                 }
             });
-        });
-
-        // Fixed GitHub Pages navigation handler
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get the current page URL
-            const currentPath = window.location.pathname;
-            const isGitHubPages = window.location.hostname.includes('github.io');
-            
-            if (isGitHubPages) {
-                // Handle navigation links
-                document.querySelectorAll('a').forEach(link => {
-                    const href = link.getAttribute('href');
-                    
-                    // Skip external links, mailto, anchors
-                    if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto:')) {
-                        return;
-                    }
-                    
-                    // Handle the home link differently based on current page
-                    if (href === '/' || href === '/index.html') {
-                        if (currentPath === '/' || currentPath === '/index.html' || currentPath === '/pages/') {
-                            // Already on home page
-                            link.setAttribute('href', '/');
-                        } else if (currentPath.includes('/pages/')) {
-                            // Currently in /pages/ directory, go back to root
-                            link.setAttribute('href', '/');
-                        }
-                    }
-                    
-                    // Handle relative links from pages directory
-                    else if (href.startsWith('/pages/') && currentPath.includes('/pages/')) {
-                        // Already in pages directory, link is correct
-                    }
-                    else if (href.startsWith('/pages/') && !currentPath.includes('/pages/')) {
-                        // From root to pages - link is correct
-                    }
-                });
-                
-                // Fix current page highlighting
-                document.querySelectorAll('.nav-links a').forEach(link => {
-                    const href = link.getAttribute('href');
-                    
-                    // Remove active class from all
-                    link.classList.remove('active');
-                    
-                    // Check if this is the current page
-                    if (href === '/' || href === '/index.html') {
-                        // Home page
-                        if (currentPath === '/' || currentPath === '/index.html') {
-                            link.classList.add('active');
-                        }
-                    } else if (currentPath.includes(href.replace('.html', ''))) {
-                        // Other pages (remove .html for matching)
-                        link.classList.add('active');
-                    }
-                });
-            }
         });
 
         // Add loading animation for page elements
