@@ -1237,13 +1237,38 @@
                 color: black !important;
             }
         }
+        
+.logo {
+    font-family: 'Arial Black', sans-serif; /* Bold font */
+    font-size: 24px; /* smaller size */
+    color: #fff; /* Main text color */
+    background-color: #9e7170; /* Red background */
+    padding: 4px 8px; /* smaller padding */
+    border-radius: 4px; /* small rounded corners */
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    box-shadow: 2px 2px 0 #3b0a0a; /* subtle shadow */
+}
+
+.logo span {
+    text-shadow: 1px 1px #3b0a0a; /* subtle 3D effect */
+    font-weight: bold;
+}
+
+/* Optional small hover effect */
+.logo:hover {
+    transform: translateY(-1px);
+    box-shadow: 3px 3px 0 #3b0a0a;
+    transition: all 0.2s ease;
+}
     </style>
 </head>
 <body>
     <!-- Navigation - FIXED -->
     <nav class="navbar">
         <div class="container">
-            <a href="/" class="logo">Lalit<span>Pant</span></a>
+            <a href="/" class="logo">Pant<span>astic</span></a>
             <ul class="nav-links">
     <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
     <li><a href="/pages/about.html" class="active"><i class="fas fa-user"></i> About</a></li>
