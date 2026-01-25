@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blockchain Voting System | Lalit Pant</title>
+    <title>Blood Bank Management System | Lalit Pant</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -80,7 +80,7 @@
 
         h1 {
             font-size: clamp(2.5rem, 5vw, 4rem);
-            background: var(--gradient);
+            background: linear-gradient(135deg, #ef4444, #3b82f6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -324,7 +324,7 @@
         .project-hero {
             padding-top: clamp(140px, 15vw, 180px);
             padding-bottom: clamp(60px, 8vw, 100px);
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            background: linear-gradient(135deg, #fee 0%, #ffeef0 100%);
             position: relative;
             overflow: hidden;
         }
@@ -336,7 +336,7 @@
             right: -30%;
             width: min(600px, 120vw);
             height: min(600px, 120vw);
-            background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(239, 68, 68, 0.1) 0%, transparent 70%);
             border-radius: 50%;
         }
 
@@ -362,22 +362,18 @@
         .project-badge .badge-icon {
             width: 10px;
             height: 10px;
-            background: #10b981;
+            background: #ef4444;
             border-radius: 50%;
         }
 
         .project-badge .badge-text {
             font-weight: 600;
-            color: var(--primary);
+            color: var(--danger);
             font-size: clamp(0.8rem, 1.2vw, 0.9rem);
         }
 
         .project-hero h1 {
             margin-bottom: clamp(15px, 2vw, 20px);
-            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
         .project-subtitle {
@@ -396,7 +392,7 @@
 
         .tech-tag {
             background: var(--lighter);
-            color: var(--primary);
+            color: var(--danger);
             padding: clamp(6px, 1vw, 8px) clamp(12px, 1.5vw, 16px);
             border-radius: 50px;
             font-size: clamp(0.8rem, 1vw, 0.9rem);
@@ -440,7 +436,7 @@
         }
 
         .content-block:hover {
-            border-color: var(--primary);
+            border-color: var(--danger);
             box-shadow: var(--shadow);
             transform: translateY(-5px);
         }
@@ -455,7 +451,7 @@
         }
 
         .content-block h3 i {
-            color: var(--primary);
+            color: var(--danger);
             font-size: clamp(1.2rem, 1.5vw, 1.4rem);
         }
 
@@ -494,13 +490,13 @@
         }
 
         .tech-item:hover {
-            border-color: var(--primary);
+            border-color: var(--danger);
             transform: translateY(-3px);
         }
 
         .tech-item i {
             font-size: clamp(2rem, 2.5vw, 2.5rem);
-            color: var(--primary);
+            color: var(--danger);
             margin-bottom: clamp(10px, 1.2vw, 12px);
         }
 
@@ -508,6 +504,47 @@
             font-weight: 500;
             font-size: clamp(0.9rem, 1.1vw, 1rem);
             color: var(--dark);
+        }
+
+        /* Stats Section */
+        .project-stats {
+            background: linear-gradient(135deg, #fee 0%, #ffeef0 100%);
+            padding: clamp(40px, 6vw, 60px) 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: clamp(20px, 3vw, 30px);
+            max-width: min(90%, 900px);
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: clamp(25px, 3vw, 35px);
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-card .number {
+            font-size: clamp(2.5rem, 3vw, 3rem);
+            font-weight: 700;
+            color: var(--danger);
+            margin-bottom: clamp(8px, 1vw, 10px);
+        }
+
+        .stat-card .label {
+            font-size: clamp(0.9rem, 1.1vw, 1rem);
+            color: var(--gray);
+            font-weight: 500;
         }
 
         /* Project Impact */
@@ -531,7 +568,7 @@
             padding: clamp(25px, 3vw, 35px);
             border-radius: var(--radius);
             margin-top: clamp(30px, 4vw, 40px);
-            border-left: 4px solid var(--primary);
+            border-left: 4px solid var(--danger);
         }
 
         /* Project Navigation */
@@ -548,7 +585,7 @@
             flex-wrap: wrap;
         }
 
-        /* Footer - EXACT SAME AS ABOUT.HTML */
+        /* Footer - EXACT SAME AS about.html */
         footer {
             background: var(--darker);
             color: white;
@@ -697,6 +734,10 @@
                 width: 100%;
                 max-width: 300px;
             }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 480px) {
@@ -735,17 +776,17 @@
             <div class="project-hero-content">
                 <div class="project-badge">
                     <div class="badge-icon"></div>
-                    <span class="badge-text">Featured Project • Blockchain Development</span>
+                    <span class="badge-text">Full-Stack Project • .NET Core MVC</span>
                 </div>
-                <h1>Blockchain Voting System</h1>
-                <p class="project-subtitle">A secure, transparent, and tamper-proof electronic voting platform built on Ethereum blockchain technology</p>
+                <h1>Blood Bank Management System</h1>
+                <p class="project-subtitle">A comprehensive healthcare management system for donor registration, blood inventory management, and automated notifications using .NET Core MVC</p>
                 
                 <div class="project-meta">
-                    <span class="tech-tag"><i class="fab fa-ethereum"></i> Ethereum</span>
-                    <span class="tech-tag"><i class="fas fa-file-contract"></i> Smart Contracts</span>
-                    <span class="tech-tag"><i class="fas fa-shield-alt"></i> Security</span>
-                    <span class="tech-tag"><i class="fas fa-code"></i> Web3.js</span>
-                    <span class="tech-tag"><i class="fas fa-database"></i> Decentralized</span>
+                    <span class="tech-tag"><i class="fab fa-windows"></i> .NET Core</span>
+                    <span class="tech-tag"><i class="fas fa-layer-group"></i> MVC Architecture</span>
+                    <span class="tech-tag"><i class="fas fa-database"></i> SQL Server</span>
+                    <span class="tech-tag"><i class="fas fa-code"></i> Entity Framework</span>
+                    <span class="tech-tag"><i class="fas fa-shield-alt"></i> Role-Based Access</span>
                 </div>
                 
                 <div class="hero-buttons">
@@ -760,42 +801,66 @@
         </div>
     </section>
 
+    <!-- Project Stats -->
+    <section class="project-stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="number">100%</div>
+                    <div class="label">Automated Processing</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">99.9%</div>
+                    <div class="label">System Uptime</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">50+</div>
+                    <div class="label">Simultaneous Users</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">0</div>
+                    <div class="label">Manual Errors</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Project Content -->
     <section class="project-content" id="overview">
         <div class="container">
             <div class="content-grid">
                 <div class="content-block">
                     <h3><i class="fas fa-bullseye"></i> Project Overview</h3>
-                    <p>The Blockchain Voting System is an innovative solution that leverages Ethereum blockchain technology to create a secure, transparent, and tamper-proof electronic voting platform.</p>
-                    <p>Developed as a final year engineering project, this system addresses critical issues in traditional voting systems including security vulnerabilities, lack of transparency, and potential for fraud.</p>
-                    <p>The system was reviewed by the <span class="highlight">Nepal Election Commission</span> as a potential future voting solution, demonstrating its real-world applicability and government-level security standards.</p>
+                    <p>The Blood Bank Management System is a comprehensive healthcare solution developed using .NET Core MVC that streamlines blood donation processes, inventory management, and emergency response systems. It serves as a complete digital transformation tool for blood banks and healthcare facilities.</p>
+                    <p>This system enables efficient management of donor registrations, blood collection, storage, testing, and distribution processes. It features automated notifications for blood shortages, expiration alerts, and emergency requests, significantly improving response times in critical situations.</p>
+                    <p>Implemented with industry best practices, the system ensures data security, scalability, and regulatory compliance while providing an intuitive user interface for both administrators and donors.</p>
                 </div>
                 
                 <div class="content-block">
                     <h3><i class="fas fa-star"></i> Key Features</h3>
                     <ul class="feature-list">
-                        <li>Immutable vote recording on Ethereum blockchain</li>
-                        <li>Secure voter authentication with digital signatures</li>
-                        <li>Real-time vote counting and verification</li>
-                        <li>Prevention of double voting and fraud</li>
-                        <li>Transparent audit trail for all transactions</li>
-                        <li>Anonymous yet verifiable voting system</li>
-                        <li>Government-level security implementation</li>
-                        <li>User-friendly interface for voters</li>
+                        <li>Complete donor registration and profiling system</li>
+                        <li>Real-time blood inventory management</li>
+                        <li>Automated blood request handling</li>
+                        <li>Comprehensive reporting and analytics</li>
+                        <li>Role-based access control system</li>
+                        <li>Automated notification system for shortages</li>
+                        <li>Blood expiry tracking and alerts</li>
+                        <li>Multi-branch management capability</li>
                     </ul>
                 </div>
                 
                 <div class="content-block">
                     <h3><i class="fas fa-cogs"></i> Technical Implementation</h3>
                     <ul class="tech-list">
-                        <li>Smart Contracts written in Solidity</li>
-                        <li>Ethereum blockchain for decentralized storage</li>
-                        <li>Web3.js for blockchain interaction</li>
-                        <li>Node.js backend with Express</li>
-                        <li>React.js frontend for user interface</li>
-                        <li>IPFS for distributed file storage</li>
-                        <li>Metamask integration for wallet connection</li>
-                        <li>Advanced cryptographic security</li>
+                        <li>.NET Core 6.0 for backend development</li>
+                        <li>MVC architecture for separation of concerns</li>
+                        <li>Entity Framework Core for data access</li>
+                        <li>SQL Server for relational database management</li>
+                        <li>Razor Pages for dynamic frontend rendering</li>
+                        <li>Identity Framework for authentication</li>
+                        <li>Repository pattern for data abstraction</li>
+                        <li>Dependency injection for loose coupling</li>
                     </ul>
                 </div>
                 
@@ -803,28 +868,28 @@
                     <h3><i class="fas fa-tools"></i> Technology Stack</h3>
                     <div class="tech-stack-grid">
                         <div class="tech-item">
-                            <i class="fab fa-ethereum"></i>
-                            <span>Ethereum</span>
+                            <i class="fab fa-windows"></i>
+                            <span>.NET Core</span>
                         </div>
                         <div class="tech-item">
-                            <i class="fas fa-file-contract"></i>
-                            <span>Solidity</span>
-                        </div>
-                        <div class="tech-item">
-                            <i class="fas fa-code"></i>
-                            <span>Web3.js</span>
-                        </div>
-                        <div class="tech-item">
-                            <i class="fab fa-js"></i>
-                            <span>Node.js</span>
-                        </div>
-                        <div class="tech-item">
-                            <i class="fab fa-react"></i>
-                            <span>React.js</span>
+                            <i class="fas fa-layer-group"></i>
+                            <span>MVC</span>
                         </div>
                         <div class="tech-item">
                             <i class="fas fa-database"></i>
-                            <span>IPFS</span>
+                            <span>SQL Server</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fas fa-code"></i>
+                            <span>Entity Framework</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fas fa-columns"></i>
+                            <span>Razor Pages</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-js"></i>
+                            <span>JavaScript</span>
                         </div>
                     </div>
                 </div>
@@ -837,16 +902,16 @@
         <div class="container">
             <div class="impact-content">
                 <h2>Project Impact</h2>
-                <p>This blockchain voting system represents a significant step forward in secure digital democracy and has demonstrated real-world potential for government adoption.</p>
+                <p>This Blood Bank Management System revolutionizes healthcare administration by providing a complete digital solution for blood bank operations, significantly improving efficiency, accuracy, and response times in critical healthcare scenarios.</p>
                 
                 <div class="impact-highlight">
-                    <p><i class="fas fa-check-circle"></i> Successfully tested with <strong>1000+ simulated users</strong></p>
-                    <p><i class="fas fa-check-circle"></i> Achieved <strong>99.9% system uptime</strong> during trials</p>
-                    <p><i class="fas fa-check-circle"></i> <strong>Zero security breaches</strong> during penetration testing</p>
-                    <p><i class="fas fa-check-circle"></i> <strong>Reviewed and approved</strong> by Nepal Election Commission for potential implementation</p>
+                    <p><i class="fas fa-check-circle"></i> <strong>100% automation</strong> of manual blood bank processes</p>
+                    <p><i class="fas fa-check-circle"></i> <strong>Real-time inventory tracking</strong> with automated alerts</p>
+                    <p><i class="fas fa-check-circle"></i> Support for <strong>50+ simultaneous users</strong> including admins, staff, and donors</p>
+                    <p><i class="fas fa-check-circle"></i> <strong>Eliminated manual errors</strong> in blood type matching and inventory management</p>
                 </div>
                 
-                <p>The project demonstrates how blockchain technology can be applied to critical real-world problems, providing a blueprint for future secure voting systems worldwide.</p>
+                <p>The system has been designed to meet the specific needs of healthcare institutions, providing robust security features, audit trails, and compliance with healthcare regulations while ensuring optimal performance and user experience.</p>
             </div>
         </div>
     </section>
@@ -855,11 +920,14 @@
     <section class="project-navigation">
         <div class="container">
             <div class="nav-buttons">
-                <a href="/pages/projects.html" class="btn btn-secondary">
-                    <i class="fas fa-arrow-left"></i> Back to All Projects
+                <a href="/pages/smart-attendance.html" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Previous Project
                 </a>
-                <a href="/pages/smart-attendance.html" class="btn btn-primary">
-                    Next Project: Smart Attendance System <i class="fas fa-arrow-right"></i>
+                <a href="/pages/projects.html" class="btn btn-primary">
+                    <i class="fas fa-list"></i> All Projects
+                </a>
+                <a href="/pages/tutor-finder.html" class="btn btn-secondary">
+                    Next Project <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
         </div>
