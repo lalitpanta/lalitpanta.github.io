@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Meet the core team · Shirish, Ishmirti, Dibash, Kanchan</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+	<link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
+	<style>
+		:root {
+			--primary: #2563eb;
+			--primary-dark: #1d4ed8;
+			--secondary: #7c3aed;
+			--secondary-dark: #6d28d9;
+			--dark: #0f172a;
+			--darker: #020617;
+			--light: #f8fafc;
+			--lighter: #ffffff;
+			--gray: #64748b;
+			--gray-light: #e2e8f0;
+			--gray-dark: #475569;
+			--success: #10b981;
+			--warning: #c4e64b;
+			--shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+			--shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+			--shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+			--transition: all 0.3s ease;
+			--radius: 12px;
+			--radius-lg: 20px;
+			--gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+			--gradient-dark: linear-gradient(135deg, var(--primary-dark), var(--secondary-dark));
+		}
+		* { margin: 0; padding: 0; box-sizing: border-box; }
+		html { scroll-behavior: smooth; scroll-padding-top: 80px; font-size: 16px; }
+		@media (max-width: 768px) { html { font-size: 15px; } }
+		@media (max-width: 480px) { html { font-size: 14px; } }
+		body {
+			font-family: 'Poppins', sans-serif;
+			line-height: 1.7;
+			color: var(--dark);
+			background: linear-gradient(135deg, #f8fafc 0%, #f0f9ff 100%);
+			min-height: 100vh;
+			overflow-x: hidden;
+		}
+		h1, h2, h3, h4, h5 {
+			font-family: 'Space Grotesk', sans-serif;
+			font-weight: 700;
+			line-height: 1.2;
+			margin-bottom: 1rem;
+		}
+		p { color: var(--gray); }
+		.container {
+			width: 100%;
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 0 clamp(15px, 3vw, 20px);
+		}
+		section { padding: clamp(60px, 8vw, 100px) 0; }
+		.btn {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			gap: 10px;
+			padding: clamp(12px, 2vw, 14px) clamp(24px, 3vw, 32px);
+			border-radius: var(--radius);
+			font-weight: 600;
+			font-size: 1rem;
+			text-decoration: none;
+			transition: var(--transition);
+			cursor: pointer;
+			border: none;
+			outline: none;
+			position: relative;
+			overflow: hidden;
+			white-space: nowrap;
+		}
+		.btn::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: -100%;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+			transition: left 0.7s ease;
+		}
+		.btn:hover::before { left: 100%; }
+		.btn-primary {
+			background: var(--gradient);
+			color: white;
+			box-shadow: var(--shadow);
+		}
+		.btn-primary:hover {
+			background: var(--gradient-dark);
+			transform: translateY(-3px);
+			box-shadow: var(--shadow-lg);
+		}
+		.btn-secondary {
+			background: transparent;
+			color: var(--primary);
+			border: 2px solid var(--primary);
+		}
+		.btn-secondary:hover {
+			background: rgba(37,99,235,0.1);
+			transform: translateY(-3px);
+		}
+		.cta-section .btn-secondary {
+			color: #fff;
+			border-color: #fff;
+		}
+		.cta-section .btn-secondary:hover {
+			background: rgba(255,255,255,0.15);
+			color: #fff;
+		}
+		.section-header {
+			text-align: center;
+			margin-bottom: clamp(40px, 6vw, 60px);
+		}
+		.section-header h2 {
+			margin-bottom: 15px;
+			position: relative;
+			display: inline-block;
+		}
+		.section-header h2::after {
+			content: '';
+			position: absolute;
+			bottom: -10px;
+			left: 50%;
+			transform: translateX(-50%);
+			width: clamp(60px, 10vw, 80px);
+			height: 4px;
+			background: var(--gradient);
+			border-radius: 2px;
+		}
+		.section-header p {
+			max-width: min(90%, 650px);
+			margin: 0 auto;
+			font-size: clamp(1rem, 2vw, 1.1rem);
+		}
+		/* navigation */
+		.navbar {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			background-color: rgba(255,255,255,0.95);
+			backdrop-filter: blur(10px);
+			box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+			z-index: 1000;
+			padding: 22px 0;
+			transition: all 0.5s ease;
+		}
+		.navbar.scrolled { padding: 16px 0; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+		.navbar .container { display: flex; justify-content: space-between; align-items: center; }
+		.logo {
+			font-family: 'Arial Black', sans-serif;
+			font-size: 24px;
+			color: #fff;
+			background-color: #9e7170;
+			padding: 4px 8px;
+			border-radius: 4px;
+			text-decoration: none;
+			display: inline-block;
+			box-shadow: 2px 2px 0 #3b0a0a;
+		}
+		.logo span { text-shadow: 1px 1px #3b0a0a; font-weight: bold; }
+		.logo:hover { transform: translateY(-1px); box-shadow: 3px 3px 0 #3b0a0a; transition: all 0.2s ease; }
+		.nav-links { display: flex; list-style: none; }
+		.nav-links li { margin-left: 2.2rem; }
+		.nav-links a {
+			text-decoration: none;
+			color: var(--dark);
+			font-weight: 500;
+			transition: var(--transition);
+			position: relative;
+			padding: 5px 0;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+		}
+		.nav-links a::after {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 0;
+			height: 2px;
+			background-color: var(--primary);
+			transition: width 0.3s ease;
+		}
+		.nav-links a:hover { color: var(--primary); }
+		.nav-links a:hover::after { width: 100%; }
+		.nav-links a.active { color: var(--primary); }
+		.nav-links a.active::after { width: 100%; }
+		.hamburger {
+			display: none;
+			font-size: 1.5rem;
+			cursor: pointer;
+			color: var(--dark);
+			background: none;
+			border: none;
+			padding: 5px;
+			z-index: 1001;
+		}
+		/* hero */
+		.hero {
+			padding-top: clamp(120px, 15vw, 160px);
+			padding-bottom: clamp(60px, 8vw, 100px);
+			background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+			position: relative;
+			overflow: hidden;
+		}
+		.hero::before {
+			content: '';
+			position: absolute;
+			top: -30%;
+			right: -30%;
+			width: min(800px, 150vw);
+			height: min(800px, 150vw);
+			background: radial-gradient(circle, rgba(37,99,235,0.1) 0%, transparent 70%);
+			border-radius: 50%;
+		}
+		.hero::after {
+			content: '';
+			position: absolute;
+			bottom: -20%;
+			left: -15%;
+			width: min(600px, 120vw);
+			height: min(600px, 120vw);
+			background: radial-gradient(circle, rgba(124,58,237,0.1) 0%, transparent 70%);
+			border-radius: 50%;
+		}
+		.hero-content {
+			position: relative;
+			z-index: 2;
+			max-width: min(90%, 820px);
+			margin: 0 auto;
+			text-align: center;
+		}
+		.hero-badge {
+			display: inline-flex;
+			align-items: center;
+			gap: 10px;
+			background: white;
+			padding: clamp(6px, 1vw, 8px) clamp(15px, 2vw, 20px);
+			border-radius: 50px;
+			margin-bottom: clamp(20px, 3vw, 30px);
+			box-shadow: var(--shadow);
+		}
+		.hero-badge .badge-icon {
+			width: clamp(6px, 1vw, 8px);
+			height: clamp(6px, 1vw, 8px);
+			background: var(--success);
+			border-radius: 50%;
+			animation: pulse 2s infinite;
+		}
+		.hero h1 {
+			font-size: clamp(2.5rem, 5vw, 3.6rem);
+			background: var(--gradient);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-clip: text;
+			margin-bottom: clamp(15px, 2vw, 20px);
+			line-height: 1.1;
+		}
+		.hero-subtitle {
+			font-size: clamp(1.1rem, 2vw, 1.25rem);
+			color: var(--gray);
+			margin-bottom: clamp(20px, 3vw, 30px);
+			font-weight: 400;
+		}
+		.hero-buttons {
+			display: flex;
+			gap: clamp(15px, 2vw, 20px);
+			justify-content: center;
+			margin-top: clamp(30px, 4vw, 40px);
+			flex-wrap: wrap;
+		}
+		/* team */
+		.team-section { background: white; }
+		.team-grid {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: clamp(20px, 3vw, 30px);
+		}
+		@media (min-width: 768px) { .team-grid { grid-template-columns: repeat(2, 1fr); } }
+		@media (min-width: 1200px) {
+			.team-grid { grid-template-columns: repeat(6, 1fr); }
+			.team-card { grid-column: span 2; }
+			.team-card.bottom-wide { grid-column: span 3; }
+		}
+		.team-card {
+			background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(248,250,252,0.95));
+			border: 1px solid var(--gray-light);
+			border-radius: var(--radius-lg);
+			padding: clamp(20px, 2.5vw, 28px);
+			box-shadow: var(--shadow);
+			transition: var(--transition);
+			position: relative;
+			overflow: hidden;
+		}
+		.team-card:hover {
+			transform: translateY(-6px);
+			box-shadow: var(--shadow-lg);
+			border-color: rgba(37,99,235,0.25);
+		}
+		.team-card::after {
+			content: '';
+			position: absolute;
+			top: -40px;
+			right: -40px;
+			width: 120px;
+			height: 120px;
+			background: radial-gradient(circle, rgba(37,99,235,0.12), transparent 65%);
+		}
+		.member-avatar {
+			width: 90px;
+			height: 90px;
+			border-radius: 20px;
+			object-fit: cover;
+			box-shadow: var(--shadow);
+			border: 4px solid white;
+			background: #e2e8f0;
+		}
+		.member-header {
+			display: flex;
+			align-items: center;
+			gap: 16px;
+			margin-bottom: 16px;
+		}
+		.member-meta { display: flex; flex-direction: column; gap: 4px; }
+		.member-meta h3 { margin: 0; color: var(--dark); }
+		.member-role { font-weight: 600; color: var(--primary); font-size: 0.95rem; }
+		.member-qualification { font-size: 0.9rem; color: var(--gray); }
+		.member-bio { margin: 12px 0 16px; color: var(--gray-dark); font-size: 0.98rem; }
+		.member-tags {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 8px;
+			margin-bottom: 16px;
+		}
+		.tag {
+			background: rgba(37,99,235,0.08);
+			color: var(--primary);
+			padding: 6px 10px;
+			border-radius: 999px;
+			font-size: 0.85rem;
+			font-weight: 600;
+		}
+		.member-links {
+			display: flex;
+			gap: 12px;
+			flex-wrap: wrap;
+		}
+		.member-links a {
+			width: 38px;
+			height: 38px;
+			border-radius: 10px;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			background: rgba(99,102,241,0.08);
+			color: var(--dark);
+			transition: var(--transition);
+			border: 1px solid transparent;
+			font-size: 1.1rem;
+		}
+		.member-links a:hover {
+			background: white;
+			color: var(--primary);
+			border-color: rgba(37,99,235,0.3);
+			transform: translateY(-3px);
+		}
+		.profile-modal {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			display: none;
+			align-items: center;
+			justify-content: center;
+			background: rgba(15, 23, 42, 0.6);
+			backdrop-filter: blur(6px);
+			z-index: 1200;
+			padding: 20px;
+		}
+		.profile-modal.active { display: flex; }
+		.profile-modal-content {
+			background: #fff;
+			border-radius: var(--radius-lg);
+			max-width: 720px;
+			width: min(95vw, 720px);
+			padding: clamp(22px, 3vw, 32px);
+			position: relative;
+			box-shadow: var(--shadow-xl);
+			border: 1px solid rgba(37,99,235,0.12);
+		}
+		.profile-modal-body .member-header img { width: 110px; height: 110px; }
+		.modal-close {
+			position: absolute;
+			top: 12px;
+			right: 12px;
+			background: rgba(15,23,42,0.06);
+			border: none;
+			border-radius: 50%;
+			width: 38px;
+			height: 38px;
+			display: grid;
+			place-items: center;
+			cursor: pointer;
+			transition: var(--transition);
+			color: var(--dark);
+			font-size: 1.1rem;
+		}
+		.modal-close:hover { background: rgba(37,99,235,0.14); color: var(--primary); transform: translateY(-1px); }
+		.quote-section {
+			position: relative;
+			background: linear-gradient(135deg, rgba(37,99,235,0.08), rgba(124,58,237,0.08));
+			padding: clamp(40px, 6vw, 70px);
+			border-radius: var(--radius-lg);
+			box-shadow: var(--shadow-lg);
+			margin-top: clamp(30px, 4vw, 50px);
+			overflow: hidden;
+			border: 1px solid rgba(37,99,235,0.12);
+		}
+		.quote-section::before {
+			content: '';
+			position: absolute;
+			top: -80px;
+			right: -80px;
+			width: 220px;
+			height: 220px;
+			background: radial-gradient(circle, rgba(124,58,237,0.16), transparent 65%);
+			pointer-events: none;
+		}
+		.quote-section::after {
+			content: '';
+			position: absolute;
+			bottom: -60px;
+			left: -60px;
+			width: 200px;
+			height: 200px;
+			background: radial-gradient(circle, rgba(37,99,235,0.14), transparent 65%);
+			pointer-events: none;
+		}
+		.quote-heading {
+			font-size: clamp(1.4rem, 3vw, 1.85rem);
+			margin-bottom: 14px;
+			color: var(--dark);
+			background: linear-gradient(120deg, var(--primary), var(--secondary));
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-clip: text;
+		}
+		.quote-body { color: var(--gray-dark); font-size: 1.02rem; line-height: 1.9; }
+		.name-highlight {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			padding: 6px 10px;
+			border-radius: 999px;
+			background: linear-gradient(135deg, rgba(37,99,235,0.18), rgba(124,58,237,0.18));
+			color: var(--dark);
+			font-weight: 700;
+			box-shadow: 0 8px 20px -10px rgba(0,0,0,0.25);
+			border: 1px solid rgba(37,99,235,0.15);
+			cursor: pointer;
+			transition: var(--transition);
+		}
+		.name-highlight:hover { transform: translateY(-1px); border-color: rgba(37,99,235,0.25); box-shadow: 0 10px 24px -12px rgba(0,0,0,0.3); }
+		.name-highlight i { color: var(--primary); }
+		/* CTA */
+		.cta-section { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; }
+		.cta-content { display: grid; gap: 16px; text-align: center; max-width: 720px; margin: 0 auto; }
+		.cta-content p { color: rgba(255,255,255,0.9); }
+		.cta-buttons { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+		/* footer */
+		footer { background: var(--darker); color: white; padding: clamp(40px, 6vw, 60px) 0; }
+		.footer-content {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: clamp(20px, 3vw, 30px);
+		}
+		@media (min-width: 768px) { .footer-content { grid-template-columns: repeat(3, 1fr); } }
+		.footer-col h3 { color: white; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+		.footer-col p { color: rgba(255,255,255,0.8); }
+		.footer-links { list-style: none; display: grid; gap: 8px; }
+		.footer-links a {
+			color: rgba(255,255,255,0.85);
+			text-decoration: none;
+			transition: var(--transition);
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+		}
+		.footer-links a:hover { color: white; transform: translateX(4px); }
+		.social-links { display: flex; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+		.social-links a {
+			width: 38px;
+			height: 38px;
+			border-radius: 10px;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			background: rgba(255,255,255,0.08);
+			color: white;
+			transition: var(--transition);
+		}
+		.social-links a:hover { background: rgba(255,255,255,0.16); transform: translateY(-3px); }
+		.copyright { margin-top: clamp(20px, 3vw, 30px); text-align: center; color: rgba(255,255,255,0.7); font-size: 0.95rem; }
+		/* responsive */
+		@media (max-width: 992px) {
+			.nav-links {
+				position: absolute;
+				top: 100%;
+				right: 15px;
+				background: white;
+				flex-direction: column;
+				width: min(260px, 90vw);
+				padding: 16px;
+				box-shadow: var(--shadow-lg);
+				border-radius: var(--radius);
+				display: none;
+			}
+			.nav-links.active { display: flex; }
+			.nav-links li { margin: 10px 0; }
+			.hamburger { display: block; }
+		}
+		@keyframes pulse {
+			0% { transform: scale(1); opacity: 1; }
+			50% { transform: scale(1.2); opacity: 0.6; }
+			100% { transform: scale(1); opacity: 1; }
+		}
+	</style>
+</head>
+<body>
+	<nav class="navbar">
+		<div class="container">
+			<a href="/" class="logo">Pant<span>astic</span></a>
+			<ul class="nav-links">
+				<li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+				<li><a href="/pages/about.html"><i class="fas fa-user"></i> About</a></li>
+				<li><a href="/pages/projects.html"><i class="fas fa-code"></i> Projects</a></li>
+				<li><a href="/pages/skills.html"><i class="fas fa-cogs"></i> Skills</a></li>
+				<li><a href="/pages/gallery.html"><i class="fas fa-images"></i> Gallery</a></li>
+				<li><a href="/pages/my-team.html" class="active"><i class="fas fa-users"></i> Team</a></li>
+				<li><a href="/pages/contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+			</ul>
+			<button class="hamburger" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
+		</div>
+	</nav>
+
+	<!-- Hero -->
+	<section class="hero">
+		<div class="container">
+			<div class="hero-content">
+				<div class="hero-badge"><div class="badge-icon"></div><span>final year computer engineering · 3+ years experience</span></div>
+				<h1>builders · researchers · creators</h1>
+				<p class="hero-subtitle">four engineers, one mission — turn ideas into production. real repos, real projects, real impact.</p>
+				<div class="hero-buttons">
+					<a href="#team" class="btn btn-primary"><i class="fas fa-arrow-down"></i> meet the team</a>
+					<a href="/pages/contact.html" class="btn btn-secondary"><i class="fas fa-handshake"></i> collaborate</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Team section – fully customised per member -->
+	<section class="team-section" id="team">
+		<div class="container">
+			<div class="section-header">
+				<h2>core engineering team</h2>
+				<p>computer engineering final‑years with 3+ years of hands‑on experience. each profile links to real GitHub repos & expertise.</p>
+			</div>
+			<div class="team-grid">
+				<!-- Dibash Timilsena (dibay-prakash) -->
+				<div class="team-card" data-profile="dibash">
+					<div class="member-header">
+						<img src="/assets/images/dibash.jpg" alt="Dibash Timilsena" class="member-avatar" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=400&q=80';">
+						<div class="member-meta">
+							<h3>Dibash Timilsena</h3>
+							<span class="member-role">AI/ML specialist · MIS frontend</span>
+							<span class="member-qualification">computer engineering · 3+ yrs</span>
+						</div>
+					</div>
+					<p class="member-bio">Delivers AI/ML solutions across multiple projects, owns NLP pipelines, and has led MIS system frontends for reliable data visibility.</p>
+					<div class="member-tags">
+						<span class="tag">AI/ML</span>
+						<span class="tag">Python</span>
+						<span class="tag">NLP</span>
+						<span class="tag">MIS Frontend</span>
+						<span class="tag">JavaScript</span>
+					</div>
+					<div class="member-links">
+						<a href="https://github.com/dibay-prakash" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+						<a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+						<a href="#" aria-label="Portfolio"><i class="fas fa-globe"></i></a>
+						<a href="mailto:dibastmlsna@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+					</div>
+				</div>
+
+				<!-- Ishmirti Acharya -->
+				<div class="team-card" data-profile="ishmirti">
+					<div class="member-header">
+						<img src="/assets/images/ishmirti.jpg" alt="Ishmirti Acharya" class="member-avatar" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=400&q=80';">
+						<div class="member-meta">
+							<h3>Ishmirti Acharya</h3>
+							<span class="member-role">backend, blockchain & data science</span>
+							<span class="member-qualification">computer engineering · 3+ yrs</span>
+						</div>
+					</div>
+					<p class="member-bio">Builds resilient services in Node.js and Solidity while driving data science workflows; pairs frontend polish with ML-backed insights for better UX.</p>
+					<div class="member-tags">
+						<span class="tag">Node.js</span>
+						<span class="tag">Solidity</span>
+						<span class="tag">Data Science</span>
+						<span class="tag">AI/ML</span>
+						<span class="tag">JavaScript</span>
+					</div>
+					<div class="member-links">
+						<a href="https://github.com/ishmirti" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+						<a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+						<a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+						<a href="mailto:ishmirti@example.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+					</div>
+				</div>
+
+				<!-- Kanchan Rai (HelpDeskSystem, C#, 8th sem project) -->
+				<div class="team-card" data-profile="kanchan">
+					<div class="member-header">
+						<img src="/assets/images/kanchan.jpg" alt="Kanchan Rai" class="member-avatar" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80';">
+						<div class="member-meta">
+							<h3>Kanchan Rai</h3>
+							<span class="member-role">full‑stack, UI/UX & documentation</span>
+							<span class="member-qualification">computer engineering · 3+ yrs</span>
+						</div>
+					</div>
+					<p class="member-bio">Builds end‑to‑end features like HelpDeskSystem (.NET), keeps UX sharp, and maintains documentation so teams and stakeholders stay aligned.</p>
+					<div class="member-tags">
+						<span class="tag">UI/UX</span>
+						<span class="tag">.NET</span>
+						<span class="tag">Docs</span>
+						<span class="tag">PHP</span>
+						<span class="tag">MySQL</span>
+					</div>
+					<div class="member-links">
+						<a href="https://github.com/kanchanrai" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+						<a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+						<a href="#" aria-label="facebook"><i class="fab fa-facebook-f"></i></a>
+						<a href="mailto:kanchan@example.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+					</div>
+				</div>
+
+				<!-- Shirish Tripathi -->
+				<div class="team-card bottom-wide" data-profile="shirish">
+					<div class="member-header">
+						<img src="/assets/images/shirish.jpg" alt="Shirish Tripathi" class="member-avatar" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80';">
+						<div class="member-meta">
+							<h3>Shirish Tripathi</h3>
+							<span class="member-role">backend & blockchain · AI/ML</span>
+							<span class="member-qualification">computer engineering · 3+ yrs</span>
+						</div>
+					</div>
+					<p class="member-bio">Backs products with Node.js, JavaScript, and Solidity; bridges AI/ML experiments into production and has shipped blockchain voting and recognition systems.</p>
+					<div class="member-tags">
+						<span class="tag">Node.js</span>
+						<span class="tag">JavaScript</span>
+						<span class="tag">Solidity</span>
+						<span class="tag">Blockchain</span>
+						<span class="tag">AI/ML</span>
+					</div>
+					<div class="member-links">
+						<a href="https://github.com/shirisharchive" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+						<a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+						<a href="#" aria-label="twitter"><i class="fab fa-x-twitter"></i></a>
+						<a href="mailto:shirish@example.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+					</div>
+				</div>
+
+				<!-- Lalit Pant (owner) -->
+				<div class="team-card bottom-wide" data-profile="lalit">
+					<div class="member-header">
+						<img src="/assets/images/profile.jpg" alt="Lalit Pant" class="member-avatar" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80';">
+						<div class="member-meta">
+							<h3>Lalit Pant</h3>
+							<span class="member-role">backend & WordPress · AI/ML learner</span>
+							<span class="member-qualification">final year computer engineering · 3+ yrs</span>
+						</div>
+					</div>
+					<p class="member-bio">Ships scalable backends, WordPress custom builds, and experiments with AI/ML to make products faster to ship and easier to maintain.</p>
+					<div class="member-tags">
+						<span class="tag">Node.js</span>
+						<span class="tag">WordPress</span>
+						<span class="tag">API Design</span>
+						<span class="tag">AI/ML</span>
+						<span class="tag">DevOps</span>
+					</div>
+					<div class="member-links">
+						<a href="https://github.com/lalitpanta" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+						<a href="https://www.linkedin.com/in/lalit-pant-8280722a8/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+						<a href="https://www.facebook.com/lalit.pant.3956" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+						<a href="mailto:pantlaalit@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+					</div>
+				</div>
+			</div>
+
+			<div class="quote-section">
+				<h3 class="quote-heading">One vision. Five focused minds. One powerful brain.</h3>
+				<p class="quote-body">With <span class="name-highlight" data-profile="ishmirti"><i class="fas fa-bolt"></i> Ishmirti Acharya</span> architecting resilient Node.js and Solidity services, optimizing data science workflows, and blending ML-driven insights with seamless system performance; <span class="name-highlight" data-profile="shirish"><i class="fas fa-brain"></i> Shirish Tripathi</span> transforming AI/ML experiments into scalable production systems and delivering secure, real-world blockchain solutions; <span class="name-highlight" data-profile="dibash"><i class="fas fa-language"></i> Dibash Timilsena</span> leading AI/ML innovation, owning advanced NLP pipelines, and building MIS frontends that ensure accurate, reliable data visibility; <span class="name-highlight" data-profile="kanchan"><i class="fas fa-palette"></i> Kanchan Rai</span> developing polished end-to-end applications, refining UI/UX experiences, and maintaining clear documentation that keeps teams aligned; and <span class="name-highlight" data-profile="lalit"><i class="fas fa-server"></i> Lalit Pant</span> delivering scalable Node.js backends, crafting custom WordPress solutions, building responsive frontends, and continuously advancing AI/ML capabilities— our five brains operate as one unified force, aligned with your vision and driven by precision, innovation, and execution. If it can be imagined, we can build it. 🚀</p>
+			</div>
+		</div>
+	</section>
+
+	<div class="profile-modal" id="profileModal" aria-hidden="true" role="dialog" aria-label="Team member details">
+		<div class="profile-modal-content">
+			<button class="modal-close" aria-label="Close profile"><i class="fas fa-times"></i></button>
+			<div class="profile-modal-body"></div>
+		</div>
+	</div>
+
+	<!-- CTA -->
+	<section class="cta-section">
+		<div class="container">
+			<div class="cta-content">
+				<h2>start something with us</h2>
+				<p>whether it's a voting system, Nepali NLP tool, or a helpdesk — we have the repos to prove we can build it.</p>
+				<div class="cta-buttons">
+					<a href="/pages/contact.html" class="btn btn-primary"><i class="fas fa-paper-plane"></i> ping the team</a>
+					<a href="/pages/projects.html" class="btn btn-secondary"><i class="fas fa-code"></i> explore repos</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- footer (unchanged except subtle addition of 'shirisharchive' mention) -->
+	<footer>
+		<div class="container">
+			<div class="footer-content">
+				<div class="footer-col">
+					<h3><i class="fas fa-user"></i> Lalit Pant · Pantastic</h3>
+					<p>backend & WordPress dev · with shirish, ishmirti, dibash & kanchan — we are four engineers building in public.</p>
+					<div class="social-links">
+						<a href="https://github.com/lalitpanta" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+						<a href="mailto:pantlaalit@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+						<a href="https://www.linkedin.com/in/lalit-pant-8280722a8/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+						<a href="https://www.facebook.com/lalit.pant.3956" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+						<a href="https://www.instagram.com/__pantastic__/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+						<a href="https://www.youtube.com/@LetsGhumgham" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+					</div>
+				</div>
+				<div class="footer-col">
+					<h3><i class="fas fa-link"></i> quick links</h3>
+					<ul class="footer-links">
+						<li><a href="/"><i class="fas fa-chevron-right"></i> Home</a></li>
+						<li><a href="/pages/about.html"><i class="fas fa-chevron-right"></i> About</a></li>
+						<li><a href="/pages/projects.html"><i class="fas fa-chevron-right"></i> Projects</a></li>
+						<li><a href="/pages/skills.html"><i class="fas fa-chevron-right"></i> Skills</a></li>
+						<li><a href="/pages/gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+						<li><a href="/pages/my-team.html"><i class="fas fa-chevron-right"></i> Team</a></li>
+						<li><a href="/pages/contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+					</ul>
+				</div>
+				<div class="footer-col">
+					<h3><i class="fas fa-map-marker-alt"></i> location & time</h3>
+					<p><i class="fas fa-graduation-cap"></i> final year · computer engineering</p>
+					<p><i class="fas fa-university"></i> Kathmandu, Nepal</p>
+					<p><i class="fas fa-globe"></i> remote / worldwide</p>
+					<p><i class="fas fa-clock"></i> GMT+5:45 (Nepal time)</p>
+				</div>
+			</div>
+			<div class="copyright">
+				<p>© 2025 Pantastic · built with <i class="fas fa-heart" style="color:#ef4444;"></i> by shirish, ishmirti, dibash & kanchan</p>
+			</div>
+		</div>
+	</footer>
+
+	<!-- same responsive + mobile menu script -->
+	<script>
+		(function() {
+			const hamburger = document.querySelector('.hamburger');
+			const navLinks = document.querySelector('.nav-links');
+			const navbar = document.querySelector('.navbar');
+			const body = document.body;
+			if (!hamburger || !navLinks) return;
+			hamburger.addEventListener('click', (e) => {
+				e.stopPropagation();
+				navLinks.classList.toggle('active');
+				const icon = hamburger.querySelector('i');
+				if (icon) {
+					icon.classList.toggle('fa-bars');
+					icon.classList.toggle('fa-times');
+				}
+				body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+			});
+			document.addEventListener('click', (e) => {
+				if (!hamburger.contains(e.target) && !navLinks.contains(e.target) && navLinks.classList.contains('active')) {
+					navLinks.classList.remove('active');
+					const icon = hamburger.querySelector('i');
+					if (icon) {
+						icon.classList.add('fa-bars');
+						icon.classList.remove('fa-times');
+					}
+					body.style.overflow = '';
+				}
+			});
+			window.addEventListener('scroll', () => {
+				navbar.classList.toggle('scrolled', window.scrollY > 50);
+			});
+			document.querySelectorAll('.nav-links a, .footer-links a').forEach(link => {
+				link.addEventListener('click', () => {
+					navLinks.classList.remove('active');
+					const icon = hamburger.querySelector('i');
+					if (icon) {
+						icon.classList.add('fa-bars');
+						icon.classList.remove('fa-times');
+					}
+					body.style.overflow = '';
+				});
+			});
+			// smooth scroll for anchor links
+			document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+				anchor.addEventListener('click', function(e) {
+					const targetId = this.getAttribute('href');
+					if (targetId === '#') return;
+					const targetEl = document.querySelector(targetId);
+					if (targetEl) {
+						e.preventDefault();
+						const y = targetEl.getBoundingClientRect().top + window.scrollY - navbar.offsetHeight;
+						window.scrollTo({ top: y, behavior: 'smooth' });
+					}
+				});
+			});
+			document.addEventListener('keydown', (e) => {
+				if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+					navLinks.classList.remove('active');
+					const icon = hamburger.querySelector('i');
+					if (icon) {
+						icon.classList.add('fa-bars');
+						icon.classList.remove('fa-times');
+					}
+					body.style.overflow = '';
+				}
+			});
+
+			// profile modal pop-up for each team card
+			const modal = document.getElementById('profileModal');
+			const modalBody = modal ? modal.querySelector('.profile-modal-body') : null;
+			const modalClose = modal ? modal.querySelector('.modal-close') : null;
+			const teamCards = Array.from(document.querySelectorAll('.team-card'));
+			const nameTriggers = Array.from(document.querySelectorAll('.name-highlight[data-profile]'));
+			const cardMap = new Map();
+			teamCards.forEach(card => {
+				const key = card.dataset.profile ? card.dataset.profile.toLowerCase() : '';
+				if (key) cardMap.set(key, card);
+			});
+			const openModal = (card) => {
+				if (!modal || !modalBody) return;
+				modalBody.innerHTML = card.innerHTML;
+				modal.classList.add('active');
+				modal.setAttribute('aria-hidden', 'false');
+				body.style.overflow = 'hidden';
+			};
+			const closeModal = () => {
+				if (!modal) return;
+				modal.classList.remove('active');
+				modal.setAttribute('aria-hidden', 'true');
+				body.style.overflow = '';
+			};
+			teamCards.forEach(card => {
+				card.style.cursor = 'pointer';
+				card.addEventListener('click', (e) => {
+					if (e.target.closest('.member-links')) return; // allow social links to work normally
+					e.preventDefault();
+					openModal(card);
+				});
+			});
+			nameTriggers.forEach(trigger => {
+				trigger.addEventListener('click', (e) => {
+					e.preventDefault();
+					const key = trigger.dataset.profile ? trigger.dataset.profile.toLowerCase() : '';
+					const card = key ? cardMap.get(key) : null;
+					if (card) openModal(card);
+				});
+			});
+			if (modal && modalClose) {
+				modalClose.addEventListener('click', closeModal);
+				modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+				document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) closeModal(); });
+			}
+		})();
+	</script>
+</body>
+</html>
