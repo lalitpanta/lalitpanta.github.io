@@ -318,7 +318,7 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 12px;
             margin-bottom: 3rem;
             opacity: 0;
             transform: translateY(20px);
@@ -331,7 +331,7 @@
         }
 
         .filter-btn {
-            padding: 12px 24px;
+            padding: 11px 22px;
             background-color: var(--light);
             border: 2px solid var(--gray-light);
             border-radius: 50px;
@@ -342,19 +342,22 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            font-size: 1rem;
+            font-size: 0.95rem;
+            font-family: 'Poppins', sans-serif;
         }
 
         .filter-btn:hover {
             border-color: var(--primary);
             color: var(--primary);
             transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
         }
 
         .filter-btn.active {
-            background-color: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            border-color: var(--primary);
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
         }
 
         .skills-categories {
@@ -369,10 +372,49 @@
             border-radius: var(--border-radius);
             padding: 35px;
             box-shadow: var(--shadow);
-            transition: var(--transition);
+            transition: var(--transition-slow);
             opacity: 0;
             transform: translateY(30px);
             border-top: 5px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.02), rgba(124, 58, 237, 0.02));
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .category-card:hover::after {
+            opacity: 1;
+        }
+
+        .category-card[data-category="backend"] {
+            border-top-color: #2563eb;
+        }
+
+        .category-card[data-category="frontend"] {
+            border-top-color: #7c3aed;
+        }
+
+        .category-card[data-category="blockchain"] {
+            border-top-color: #06b6d4;
+        }
+
+        .category-card[data-category="database"] {
+            border-top-color: #10b981;
+        }
+
+        .category-card[data-category="tools"] {
+            border-top-color: #f59e0b;
         }
 
         .category-card.visible {
@@ -738,6 +780,9 @@
                 <button class="filter-btn" data-filter="frontend">
                     <i class="fas fa-code"></i> Frontend
                 </button>
+                <button class="filter-btn" data-filter="blockchain">
+                    <i class="fas fa-link"></i> Blockchain
+                </button>
                 <button class="filter-btn" data-filter="database">
                     <i class="fas fa-database"></i> Database
                 </button>
@@ -787,6 +832,19 @@
                     </div>
                 </div>
 
+                <!-- Blockchain Development -->
+                <div class="category-card" data-category="blockchain">
+                    <div class="category-header">
+                        <div class="category-icon" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        <h3>Blockchain Development</h3>
+                    </div>
+                    <div class="skills-list" id="blockchainSkills">
+                        <!-- Blockchain skills will be dynamically generated here -->
+                    </div>
+                </div>
+
                 <!-- Tools & DevOps -->
                 <div class="category-card" data-category="tools">
                     <div class="category-header">
@@ -811,7 +869,7 @@
                         <div class="stat-icon">
                             <i class="fas fa-code"></i>
                         </div>
-                        <div class="stat-number" data-target="11">0</div>
+                        <div class="stat-number" data-target="18">0</div>
                         <div class="stat-text">Programming Languages & Frameworks</div>
                     </div>
                     <div class="stat-box">
@@ -993,9 +1051,102 @@
                 tags: ["Semantic HTML", "CSS Grid", "Flexbox", "Animations"]
             },
 
-            // Database Skills
+            // Blockchain Development Skills
             {
                 id: 8,
+                name: "Blockchain & Web3",
+                category: "blockchain",
+                icon: "fas fa-cubes",
+                iconColor: "#06b6d4",
+                bgColor: "linear-gradient(135deg, #06b6d4, #0891b2)",
+                level: 85,
+                levelText: "Advanced",
+                experience: "2+ years",
+                description: "Decentralized application development on Ethereum, Solana, and Polygon networks",
+                tags: ["Ethereum", "Web3.js", "Ethers.js", "DApps"]
+            },
+            {
+                id: 9,
+                name: "NFT Marketplace Development",
+                category: "blockchain",
+                icon: "fas fa-palette",
+                iconColor: "#8b5cf6",
+                bgColor: "linear-gradient(135deg, #8b5cf6, #7c3aed)",
+                level: 80,
+                levelText: "Advanced",
+                experience: "1.5 years",
+                description: "End-to-end NFT marketplace creation with minting, listing, and auction features",
+                tags: ["ERC-721", "ERC-1155", "IPFS", "OpenSea"]
+            },
+            {
+                id: 10,
+                name: "Token Launch Experience",
+                category: "blockchain",
+                icon: "fas fa-rocket",
+                iconColor: "#f59e0b",
+                bgColor: "linear-gradient(135deg, #f59e0b, #d97706)",
+                level: 78,
+                levelText: "Advanced",
+                experience: "1+ year",
+                description: "ERC-20/BEP-20 token creation, tokenomics design, and launchpad integration",
+                tags: ["ERC-20", "BEP-20", "Tokenomics", "Launchpad"]
+            },
+            {
+                id: 11,
+                name: "Mobile Development",
+                category: "blockchain",
+                icon: "fas fa-mobile-alt",
+                iconColor: "#06b6d4",
+                bgColor: "linear-gradient(135deg, #06b6d4, #0284c7)",
+                level: 75,
+                levelText: "Intermediate",
+                experience: "1.5 years",
+                description: "Cross-platform mobile apps with React Native and Flutter for Web3 integration",
+                tags: ["React Native", "Flutter", "Expo", "Mobile DApps"]
+            },
+            {
+                id: 12,
+                name: "Smart Contracts",
+                category: "blockchain",
+                icon: "fas fa-file-contract",
+                iconColor: "#10b981",
+                bgColor: "linear-gradient(135deg, #10b981, #059669)",
+                level: 82,
+                levelText: "Advanced",
+                experience: "2+ years",
+                description: "Solidity smart contract development, testing with Hardhat, and security auditing",
+                tags: ["Solidity", "Hardhat", "Truffle", "Security Audits"]
+            },
+            {
+                id: 13,
+                name: "Wallet Integration",
+                category: "blockchain",
+                icon: "fas fa-wallet",
+                iconColor: "#ec4899",
+                bgColor: "linear-gradient(135deg, #ec4899, #db2777)",
+                level: 80,
+                levelText: "Advanced",
+                experience: "1.5 years",
+                description: "MetaMask, WalletConnect, and multi-chain wallet integration for DApps",
+                tags: ["MetaMask", "WalletConnect", "Phantom", "Multi-chain"]
+            },
+            {
+                id: 14,
+                name: "JavaScript/TypeScript, React, Node.js",
+                category: "blockchain",
+                icon: "fab fa-js-square",
+                iconColor: "#3178c6",
+                bgColor: "linear-gradient(135deg, #3178c6, #2563eb)",
+                level: 88,
+                levelText: "Expert",
+                experience: "3+ years",
+                description: "Full-stack Web3 development with TypeScript, React frontend, and Node.js backend",
+                tags: ["TypeScript", "React", "Node.js", "Full-Stack Web3"]
+            },
+
+            // Database Skills
+            {
+                id: 15,
                 name: "MySQL",
                 category: "database",
                 icon: "fas fa-database",
@@ -1010,7 +1161,7 @@
 
             // Tools & DevOps Skills
             {
-                id: 9,
+                id: 16,
                 name: "Git",
                 category: "tools",
                 icon: "fab fa-git-alt",
@@ -1023,7 +1174,7 @@
                 tags: ["GitHub", "GitLab", "Branching", "Merge Strategies"]
             },
             {
-                id: 10,
+                id: 17,
                 name: "Docker",
                 category: "tools",
                 icon: "fab fa-docker",
@@ -1036,7 +1187,7 @@
                 tags: ["Containers", "Dockerfile", "Compose", "Images"]
             },
             {
-                id: 11,
+                id: 18,
                 name: "AWS",
                 category: "tools",
                 icon: "fab fa-aws",
@@ -1049,7 +1200,7 @@
                 tags: ["EC2", "S3", "RDS", "Lambda"]
             },
             {
-                id: 12,
+                id: 19,
                 name: "WordPress",
                 category: "tools",
                 icon: "fab fa-wordpress",
@@ -1069,6 +1220,7 @@
         const categoryLists = {
             backend: document.getElementById('backendSkills'),
             frontend: document.getElementById('frontendSkills'),
+            blockchain: document.getElementById('blockchainSkills'),
             database: document.getElementById('databaseSkills'),
             tools: document.getElementById('toolsSkills')
         };
